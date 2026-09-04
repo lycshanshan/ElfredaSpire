@@ -1,0 +1,14 @@
+{
+  "id": "ElfredaSpire",
+  "name": "ElfredaSpire",
+  "author": "lycshanshan",
+  "description": "Elfreda character for STS2",
+  "version": "0.0.0",
+  "min_game_version": "0.107.1",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": [
+    { "id": "STS2-RitsuLib", "min_version": "0.5.10" }
+  ],
+  "affects_gameplay": true
+}

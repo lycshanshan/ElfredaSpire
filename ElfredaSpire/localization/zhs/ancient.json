@@ -1,0 +1,98 @@
+{
+  "NEOW.talk.ELFREDA.0-0.char": "这座尖塔里充满了邪祟！",
+  "NEOW.talk.ELFREDA.0-0.next": "继续",
+  "NEOW.talk.ELFREDA.0-1.ancient": "启程……净化……尖塔……",
+  "NEOW.talk.ELFREDA.1-0r.ancient": "继续……征程……",
+  "NEOW.talk.ELFREDA.2-0.char": "可恶的建筑师！",
+  "NEOW.talk.ELFREDA.2-0.next": "继续",
+  "NEOW.talk.ELFREDA.2-1.ancient": "坚持……会让你……胜利……",
+
+  "OROBAS.talk.ELFREDA.0-0.ancient": "神圣的骑士？！有趣！很强大！！",
+  "OROBAS.talk.ELFREDA.0-0.next": "继续",
+  "OROBAS.talk.ELFREDA.0-1.char": "你好，友善的异魔，很感谢你的帮助。",
+  "OROBAS.talk.ELFREDA.1-0r.ancient": "劝劝建筑师！和他聊聊！聊聊很好！！",
+  "OROBAS.talk.ELFREDA.2-0.ancient": "那个好玩！表演那个！！",
+  "OROBAS.talk.ELFREDA.2-0.next": "继续",
+  "OROBAS.talk.ELFREDA.2-1.char": "（十字军开始挥舞冒火的直剑。）",
+  "OROBAS.talk.ELFREDA.2-1.next": "继续",
+  "OROBAS.talk.ELFREDA.2-2.ancient": "非常骑士！非常好玩！拿上这个！！",
+
+  "PAEL.talk.ELFREDA.0-0.ancient": "净化毫无意义，学着冥想吧……",
+  "PAEL.talk.ELFREDA.1-0r.char": "（吹口哨）",
+  "PAEL.talk.ELFREDA.2-0.char": "（十字军在佩尔睡觉时偷走了祂的一部分。）",
+  "PAEL.talk.ELFREDA.2-0.next": "继续",
+  "PAEL.talk.ELFREDA.2-1.ancient": "我不用信仰……你的神……Zzzz",
+
+  "TEZCATARA.talk.ELFREDA.0-0.ancient": "哦，好耀眼的圣火！快进来坐坐吧！",
+  "TEZCATARA.talk.ELFREDA.1-0r.ancient": "欢迎欢迎，亲爱的十字军先生，让我给你的剑添把火。",
+  "TEZCATARA.talk.ELFREDA.2-0.char": "我之前见过很可怕的稻草人。",
+  "TEZCATARA.talk.ELFREDA.2-0.next": "继续",
+  "TEZCATARA.talk.ELFREDA.2-1.ancient": "哦哦！那位亲戚肯定给你带来了许多不好的回忆。",
+
+  "DARV.talk.ELFREDA.0-0.ancient": "哦？还有客人来拜访尖塔？快来看看我的收藏！",
+  "DARV.talk.ELFREDA.1-0r.ancient": "还在净化尖塔呐，让我来帮你换一套盔甲吧！",
+  "DARV.talk.ELFREDA.2-0.ancient": "想看看“那位大人”的饰品吗？",
+  "DARV.talk.ELFREDA.2-0.next": "继续",
+  "DARV.talk.ELFREDA.2-1.char": "（想到了一些不好的回忆。）",
+  "DARV.talk.ELFREDA.2-1.next": "继续",
+  "DARV.talk.ELFREDA.2-2.ancient": "放轻松，我只是正好认识一位从哈姆雷特逃出来的管家。",
+
+  "NONUPEIPE.talk.ELFREDA.0-0.ancient": "过来吧，勇敢的十字军先生，来接受我的赐福吧！",
+  "NONUPEIPE.talk.ELFREDA.1-0r.ancient": "哦！十字军先生，下一次，可不要偷我的首饰了。",
+  "NONUPEIPE.talk.ELFREDA.2-0.ancient": "征程还没结束吗？十字军先生？",
+
+  "TANX.talk.ELFREDA.0-0.ancient": "信仰可不是武器！来挑选一把更强的剑吧！",
+  "TANX.talk.ELFREDA.1-0r.ancient": "拿上一把武器，让我们战斗吧！",
+  "TANX.talk.ELFREDA.2-0.ancient": "十字军，与我一战！",
+  "TANX.talk.ELFREDA.2-0.next": "继续",
+  "TANX.talk.ELFREDA.2-1.char": "（十字军使用了百般武艺与坦克斯战斗。）",
+  "TANX.talk.ELFREDA.2-1.next": "继续",
+  "TANX.talk.ELFREDA.2-2.ancient": "非常好！很骑士的战斗风格，收下这把武器吧！",
+
+  "VAKUU.talk.ELFREDA.0-0.char": "恶魔，吃我一剑！",
+  "VAKUU.talk.ELFREDA.0-0.next": "继续",
+  "VAKUU.talk.ELFREDA.0-1.ancient": "（瓦库挡下了十字军的所有攻击。）",
+  "VAKUU.talk.ELFREDA.0-1.next": "继续",
+  "VAKUU.talk.ELFREDA.0-2.ancient": "不用在我身上白费力气，我们的目标是一致的，让我来帮你吧。",
+  "VAKUU.talk.ELFREDA.1-0r.ancient": "哦……你的圣水可不能阻止我向你收取代价。",
+  "VAKUU.talk.ELFREDA.2-0.ancient": "你知道吗，上一位战士与我签订了更高级的契约……",
+  "VAKUU.talk.ELFREDA.2-0.next": "继续",
+  "VAKUU.talk.ELFREDA.2-1.char": "我才不会把灵魂出卖给你！",
+
+  "THE_ARCHITECT.talk.ELFREDA.0-0r.char": "这座尖塔邪恶的源头，我要审判你！",
+  "THE_ARCHITECT.talk.ELFREDA.0-0r.next": "继续",
+  "THE_ARCHITECT.talk.ELFREDA.0-1r.ancient": "我只是在做我应该做的事情。",
+  "THE_ARCHITECT.talk.ELFREDA.0r-attack": "Both",
+
+  "NEOW.talk.ELFREDA.0-visit": "1",
+  "NEOW.talk.ELFREDA.1-visit": "2",
+  "NEOW.talk.ELFREDA.2-visit": "5",
+
+  "OROBAS.talk.ELFREDA.0-visit": "1",
+  "OROBAS.talk.ELFREDA.1-visit": "2",
+  "OROBAS.talk.ELFREDA.2-visit": "5",
+
+  "PAEL.talk.ELFREDA.0-visit": "1",
+  "PAEL.talk.ELFREDA.1-visit": "2",
+  "PAEL.talk.ELFREDA.2-visit": "5",
+
+  "TEZCATARA.talk.ELFREDA.0-visit": "1",
+  "TEZCATARA.talk.ELFREDA.1-visit": "2",
+  "TEZCATARA.talk.ELFREDA.2-visit": "5",
+
+  "DARV.talk.ELFREDA.0-visit": "1",
+  "DARV.talk.ELFREDA.1-visit": "2",
+  "DARV.talk.ELFREDA.2-visit": "5",
+
+  "NONUPEIPE.talk.ELFREDA.0-visit": "1",
+  "NONUPEIPE.talk.ELFREDA.1-visit": "2",
+  "NONUPEIPE.talk.ELFREDA.2-visit": "5",
+
+  "TANX.talk.ELFREDA.0-visit": "1",
+  "TANX.talk.ELFREDA.1-visit": "2",
+  "TANX.talk.ELFREDA.2-visit": "5",
+
+  "VAKUU.talk.ELFREDA.0-visit": "1",
+  "VAKUU.talk.ELFREDA.1-visit": "2",
+  "VAKUU.talk.ELFREDA.2-visit": "5"
+}
