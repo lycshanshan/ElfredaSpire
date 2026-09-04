@@ -5,16 +5,18 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.ValueProps;
+using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 4)]
-public class DefendElfreda : ModCardTemplate
+[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 1)]
+public class Pierce : ModCardTemplate
 {
-    public DefendElfreda() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self, true)
+    public Pierce() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)
     {
     }
+
 
     // 卡图资源
     public override CardAssetProfile AssetProfile => new(
@@ -24,17 +26,17 @@ public class DefendElfreda : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, BlockProps.card)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<FlowerWedgePower>(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(this.Owner.Creature, this.DynamicVars.Block, cardPlay);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        await PowerCmd.Apply<FlowerWedgePower>(choiceContext, Owner.Creature, DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars["FlowerWedgePower"].UpgradeValueBy(1);
     }
 }

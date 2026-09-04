@@ -4,17 +4,18 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.ValueProps;
+using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 4)]
-public class DefendElfreda : ModCardTemplate
+[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 1)]
+public class Bloom : ModCardTemplate
 {
-    public DefendElfreda() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self, true)
+    public Bloom() : base(0, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy, true)
     {
     }
+
 
     // 卡图资源
     public override CardAssetProfile AssetProfile => new(
@@ -24,17 +25,17 @@ public class DefendElfreda : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override HashSet<CardTag> CanonicalTags => [CardTag.Defend];
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5, BlockProps.card)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerElfredaPower>(2), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(this.Owner.Creature, this.DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, Owner.Creature, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars["FlowerElfredaPower"].UpgradeValueBy(1);
+        DynamicVars.Cards.UpgradeValueBy(1);
     }
 }
