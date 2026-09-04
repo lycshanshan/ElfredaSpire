@@ -14,9 +14,9 @@ public class ElfredaCardPool : TypeListCardPoolModel
     public override string EnergyColorName => "ElfredaEnergyColor";
 
     // 描述中使用的能量图标。大小为24x24。
-    public override string? TextEnergyIconPath => $"{ImageRoot}/energy_example.png";
+    public override string? TextEnergyIconPath => $"{ImageRoot}/energy_Elfreda.png";
     // tooltip和卡牌左上角的能量图标。大小为74x74。
-    public override string? BigEnergyIconPath => $"{ImageRoot}/energy_example_big.png";
+    public override string? BigEnergyIconPath => $"{ImageRoot}/energy_Elfreda_big.png";
 
     // 卡池的主题色。
     public override Color DeckEntryCardColor => new(0.5f, 0.5f, 1f);

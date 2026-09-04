@@ -1,54 +1,49 @@
 ﻿using ElfredaSpire.Characters.Elfreda.Relics;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Entities.RestSite;
+using STS2RitsuLib.Scaffolding.Content;
 
 #nullable enable
 namespace ElfredaSpire.Characters.Events;
 
-public class ExampleRestSiteOption(Player owner) : RestSiteOption(owner)
+public class ElfredaRestSiteOption(Player owner) : ModRestSiteOptionTemplate(owner)
 {
-  public override string OptionId => "EXAMPLEOPTION";
+    private const int CountIncrease = 3;
+    private const string IconPath = $"{Entry.ResPath}/images/characters/Elfreda/restsite_icon_Elfreda.png";
 
-  public override LocString Description
-  {
-    get 
+    public override string OptionId => "ELFREDA_STAR_AND_FLOWER";
+
+    public override RestSiteOptionAssetProfile AssetProfile => new(IconPath: IconPath);
+
+    public override LocString CustomTitle => new("events", "ELFREDA_REST_SITE_OPTION.title");
+
+    public override LocString Description
     {
-      LocString description = base.Description;
-      // description.Add("RekindleAmount", 5M);
-      return description;
+        get
+        {
+            LocString description = new("events", "ELFREDA_REST_SITE_OPTION.description");
+            description.Add("Count", CountIncrease);
+            return description;
+        }
     }
-  }
 
-  public override Task<bool> OnSelect()
-  {
-    this.Owner.GetRelic<ElfredaStarterRelic>()?.Heal(10M);
-    return Task.FromResult<bool>(true);
-  }
+    public override Task<bool> OnSelect()
+    {
+        StarAndFlower? starAndFlower = Owner.GetRelic<StarAndFlower>();
+        StarCloudAndFlowerSea? starCloudAndFlowerSea = Owner.GetRelic<StarCloudAndFlowerSea>();
 
-  public override Task DoLocalPostSelectVfx(CancellationToken ct = default (CancellationToken))
-  {
-    // this.ExamplePlayVfx();
-    return Task.CompletedTask;
-  }
+        if (starAndFlower is not null)
+        {
+            starAndFlower.Count += CountIncrease;
+            starAndFlower.Flash();
+        }
 
-  public override Task DoRemotePostSelectVfx()
-  {
-    // this.ExamplePlayVfx();
-    return Task.CompletedTask;
-  }
+        if (starCloudAndFlowerSea is not null)
+        {
+            starCloudAndFlowerSea.Count += CountIncrease;
+            starCloudAndFlowerSea.Flash();
+        }
 
-  // private void ExamplePlayVfx()
-  // {
-  //   SfxCmd.Play("event:/sfx/characters/attack_fire");
-  //   NRestSiteRoom instance = NRestSiteRoom.Instance;
-  //   NRestSiteCharacter parent = instance != null ? instance.Characters.First<NRestSiteCharacter>((Func<NRestSiteCharacter, bool>) (c => c.Player == this.Owner)) : (NRestSiteCharacter) null;
-  //   parent?.Shake();
-  //   NRelicFlashVfx child = NRelicFlashVfx.Create((RelicModel) ModelDb.Relic<ElfredaStarterRelic>());
-  //   if (child == null)
-  //     return;
-  //   if (parent != null)
-  //     parent.AddChildSafely((Node) child);
-  //   child.Position = Vector2.Zero;
-  // }
+        return Task.FromResult(starAndFlower is not null || starCloudAndFlowerSea is not null);
+    }
 }

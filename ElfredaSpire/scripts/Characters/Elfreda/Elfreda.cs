@@ -23,41 +23,41 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     public override Color MapDrawingColor => new(0.5f, 0.5f, 1f);
 
     // 人物性别（男女中立）
-    public override CharacterGender Gender => CharacterGender.Masculine;
+    public override CharacterGender Gender => CharacterGender.Feminine;
 
     // 初始血量和金币
-    public override int StartingHp => 80;
+    public override int StartingHp => 75;
     public override int StartingGold => 99;
 
     public override CharacterAssetProfile AssetProfile => CharacterAssetProfiles.Merge(
-        CharacterAssetProfiles.Defect(),
+        CharacterAssetProfiles.Silent(),
         new(
             Scenes: new(
                 // 人物模型tscn路径。
-                VisualsPath: $"{SceneRoot}/example_character.tscn",
+                VisualsPath: $"{SceneRoot}/Elfreda_character.tscn",
                 // 能量表盘tscn路径。
-                EnergyCounterPath: $"{SceneRoot}/example_energy_counter.tscn",
+                EnergyCounterPath: $"{SceneRoot}/Elfreda_energy_counter.tscn",
                 // 商店人物场景。
-                MerchantAnimPath: $"{SceneRoot}/example_character_merchant.tscn",
+                MerchantAnimPath: $"{SceneRoot}/Elfreda_character_merchant.tscn",
                 // 篝火休息场景。
-                RestSiteAnimPath: $"{SceneRoot}/example_character_rest_site.tscn"
+                RestSiteAnimPath: $"{SceneRoot}/Elfreda_character_rest_site.tscn"
             ),
             Ui: new(
                 // 对于图片，只要是godot支持的格式都可以，例如png,jpg,svg等等，之后不再说明
                 // 人物头像路径。自适应大小。
-                IconTexturePath: $"{ImageRoot}/character_icon_example.png",
+                IconTexturePath: $"{ImageRoot}/character_icon_Elfreda.png",
                 // 游戏左上角头像、角色统计页头像、每日挑战角色头像。这个是场景而不是图片。参考下方附赠资源搭建。
-                IconPath: $"{SceneRoot}/example_icon.tscn",
+                IconPath: $"{SceneRoot}/Elfreda_icon.tscn",
                 // 人物选择背景。
-                CharacterSelectBgPath: $"{SceneRoot}/example_bg.tscn",
+                CharacterSelectBgPath: $"{SceneRoot}/Elfreda_bg.tscn",
                 // 人物选择图标。
-                CharacterSelectIconPath: $"{ImageRoot}/char_select_example.png",
+                CharacterSelectIconPath: $"{ImageRoot}/char_select_Elfreda.png",
                 // 人物选择图标-锁定状态。
-                CharacterSelectLockedIconPath: $"{ImageRoot}/char_select_example_locked.png",
+                CharacterSelectLockedIconPath: $"{ImageRoot}/char_select_Elfreda_locked.png",
                 // 人物选择过渡动画。
-                CharacterSelectTransitionPath: "res://materials/transitions/ironclad_transition_mat.tres",
+                CharacterSelectTransitionPath: "res://materials/transitions/silent_transition_mat.tres",
                 // 地图上的角色标记图标、表情轮盘上的角色头像。
-                MapMarkerPath: $"{ImageRoot}/map_marker_example.png"
+                MapMarkerPath: $"{ImageRoot}/map_marker_Elfreda.png"
             ),
             Vfx: new(
                 // 卡牌拖尾场景。

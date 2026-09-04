@@ -1,6 +1,5 @@
 using System.Reflection;
-using ElfredaSpire.Characters.Elfreda.Cards;
-using ElfredaSpire.GeneralCards;
+using ElfredaSpire.Characters.Elfreda.Relics;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
@@ -28,15 +27,15 @@ public class Entry
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
         // 自动注册内容
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
-        
+        RitsuLibFramework.RegisterTouchOfOrobasRefinementMapping<StarAndFlower, StarCloudAndFlowerSea>();
         // RitsuLibFramework.RegisterArchaicToothTranscendenceMapping<Radiance, HolyFire>();
-        // RitsuLibFramework.RegisterArchaicToothTranscendenceMapping<PistolShot, FireSuppression>();
-        ModContentRegistry.For(ModId)
-            .RegisterCardLibraryCompendiumSharedPoolFilter<GeneralCardPool>(
-                "reme_multiclass_shared_pool", // ID
-                "res://ElfredaSpire/images/characters/Elfreda/character_icon_Elfreda.png" // 图标位置
-                // null // 放置顺序（可选）
-            );
+
+        // ModContentRegistry.For(ModId)
+        //     .RegisterCardLibraryCompendiumSharedPoolFilter<GeneralCardPool>(
+        //         "reme_multiclass_shared_pool", // ID
+        //         "res://ElfredaSpire/images/characters/Elfreda/character_icon_Elfreda.png" // 图标位置
+        //         // null // 放置顺序（可选）
+        //     );
         Logger.Info(BuildMarker);
         
         var cardTags = RitsuLibFramework.GetCardTagRegistry(Entry.ModId);
