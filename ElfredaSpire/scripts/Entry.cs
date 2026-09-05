@@ -1,10 +1,11 @@
 using System.Reflection;
-using ElfredaSpire.Characters.Elfreda.Relics;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
+using ElfredaSpire.Characters.Elfreda.Relics;
+using ElfredaSpire.Characters.Elfreda.Cards;
 
 namespace ElfredaSpire;
 
@@ -28,7 +29,7 @@ public class Entry
         // 自动注册内容
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         RitsuLibFramework.RegisterTouchOfOrobasRefinementMapping<StarAndFlower, StarCloudAndFlowerSea>();
-        // RitsuLibFramework.RegisterArchaicToothTranscendenceMapping<Radiance, HolyFire>();
+        RitsuLibFramework.RegisterArchaicToothTranscendenceMapping<Bloom, FlowerSeaArrival>();
 
         // ModContentRegistry.For(ModId)
         //     .RegisterCardLibraryCompendiumSharedPoolFilter<GeneralCardPool>(

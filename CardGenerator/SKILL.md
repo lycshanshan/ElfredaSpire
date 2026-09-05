@@ -89,12 +89,13 @@ Use this skill when the user asks to:
 You must follow all of these rules:
 
 1. If any requested card design contains parts that `CardGenerator.py` cannot implement, generate only the code for the implementable portion.
-2. All unimplementable requested features must be written as a comment at the very last line of the generated `.cs` file.
+2. All unimplementable requested features must be written as a comment at the very last line of the generated `.cs` file, unless the user explicitly forbids editing the generated cards afterwards.
 3. Card names must use English only.
-4. If the user requests batch generation, also create a `Checklist.md` file in the target output directory.
+4. If the user requests batch generation, also create a `Checklist.md` file in the target output directory, unless the user specifies a different checklist location or format (see "User-requested checklist").
 5. In `Checklist.md`, use each card's `card_name` as the todo item text.
 6. If a card is fully implementable by the script, mark it as checked.
 7. If a card is not fully implementable, leave it unchecked.
+8. Every requested card must produce exactly one generated `.cs` file, even when nothing but an empty skeleton (base fields plus keywords/tags) is generatable.
 
 ## Important implementation notes
 
@@ -109,8 +110,11 @@ Examples:
 - `PowerVar_StrengthPower_`
 - `PowerVar_WeakPower_`
 
+### Generated OnPlay semantics
+The generated `OnPlay` applies every `PowerVar` power to the card owner's creature regardless of `target_type`. Treat the generated code as a skeleton rather than final semantics, and do not hand-edit it unless the user allows post-generation changes.
+
 ### Output location
-Generate the `.cs` files into the directory requested by the user.
+Generate the `.cs` files into the directory requested by the user. The output file is always named `{card_name}.cs`; to name files by card ID (`{ID}.cs`), pass the ID as `--card-name`.
 
 ## What the script can directly express
 
@@ -138,7 +142,8 @@ Assume the following are not directly supported unless the request can be reduce
 - exhaust pile manipulation beyond keyword declaration
 - custom retain behavior logic
 - end-of-turn, start-of-turn, on-draw, on-exhaust, on-kill triggers
-- multiple separate hit sequences
+- multiple separate hit sequences (for “X伤害N次”, skip the damage entirely — do not fall back to a single-hit `DamageVar`)
+- special stack consumption like “consume up to X stacks” (消耗至多X层)
 - target-state-dependent branching
 - status checks like “if target is Weak/Vulnerable then ...”
 - hand/deck/discard inspection logic
@@ -174,6 +179,28 @@ Map user requirements into script arguments using these rules whenever possible.
 - “升级后减费1” -> `EnergyCost=-1`
 - “升级后某Power层数+X” -> `PowerVar_<PowerName>_=X`
 
+### "x/y" convention (x = pre-upgrade, y = post-upgrade)
+
+When a value is written as `x/y`, express it as base `x` plus an upgrade delta of `y - x`:
+
+- “造成6/9点伤害” -> `DamageVar=6`, `Damage=3`
+- “获得5/7点格挡” -> `BlockVar=5`, `Block=2`
+- “施加2/3层某Power” -> `PowerVar_<PowerName>_=2`, upgrade `PowerVar_<PowerName>_=1`
+- “费用2/1” -> `EnergyCost=-1`
+- “消耗2/1层某Power” -> `PowerVar_<PowerName>_=-2`, upgrade `PowerVar_<PowerName>_=1` (net: -1)
+- “X费” (X-cost) -> `cost=-1`
+
+### Power consumption / stack loss mapping
+
+Plain consumption and stack loss are expressed with negative `PowerVar` values:
+
+- “消耗X层某Power”（无特殊条件）-> `PowerVar_<PowerName>_=-X`
+- “失去X点力量” -> `PowerVar_StrengthPower_=-X`
+
+Not supported — ignore the whole effect:
+
+- “消耗至多X层某Power”（至多 = special consumption type, no negative PowerVar fallback）
+
 ### Keyword mapping
 - 消耗 -> `Exhaust`
 - 虚无 -> `Ethereal`
@@ -189,6 +216,14 @@ Map user requirements into script arguments using these rules whenever possible.
 - 随从 -> `Minion`
 - Osty攻击 -> `OstyAttack`
 - 小刀 -> `Shiv`
+
+Apply the `Strike` tag only to the character's 打击 card and `Defend` only to 防御, unless the design explicitly says otherwise.
+
+### Type / rarity / target inference
+
+- Card type: 攻击 -> `Attack`, 技能 -> `Skill`, 能力 -> `Power`
+- Rarity by design section: 初始 -> `Basic`, 先古 -> `Ancient`, 普通 -> `Common`, 罕见 -> `Uncommon`, 稀有 -> `Rare`
+- Target: 对所有敌人 -> `AllEnemies`; single target / 对目标 -> `AnyEnemy`; self-only effects -> `Self`; Power cards -> `Self`; 随机 -> `RandomEnemy`
 
 ## Workflow
 
@@ -253,6 +288,19 @@ Rules:
 - use `card_name` exactly as the todo item text
 - checked means fully supported by `CardGenerator.py`
 - unchecked means partially supported or contains unsupported requested features
+
+## User-requested checklist (e.g. `Cards.md`)
+
+When the user specifies a checklist location and format (e.g. a `Cards.md` in a `CheckList/` directory), it overrides the built-in `Checklist.md` behavior. Typical process:
+
+1. Generate every card with the CLI only, then verify the generated file count equals the total card count.
+2. Write one row per card, in the exact categories and order of the user's card requirement document:
+   - `- [x] {ID} {卡牌名}` — fully generated: every requested effect was mapped to supported parameters
+   - `- [ ] {ID} {卡牌名}` — partially generated (some special effects ignored) or an empty skeleton
+3. Every card gets exactly one row, including empty skeletons (those stay unchecked).
+4. Verify the checklist row count equals the total card count.
+
+Checked status rule: `[x]` only when nothing requested was left out. Any ignored special effect, special consumption type, trigger, or multi-hit keeps the row unchecked.
 
 ## Behavior when information is missing
 
