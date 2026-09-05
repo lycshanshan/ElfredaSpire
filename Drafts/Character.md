@@ -95,6 +95,19 @@
 - 达到20层时，立即移除本效果，并获得3层[绽放]。
 - 回合结束时，减少一层。
 
+
+### 本地化文本
+
+- 星：造成的伤害增加[blue]{amount}%[/blue]。\n[blue]5~7[/blue]层：获得[blue]1[/blue]层[gold]敏捷[/gold]。\n8~10层：获得[blue]1[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]。\n[blue]11~17[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]，[blue]2[/blue]层[gold]敏捷[/gold]，受到的伤害减少[blue]10%[/blue]。\n[blue]18~25[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]20%[/blue]。\n[blue]26~50[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]25%[/blue]，每回合额外获得{energyPrefix:energyIcons(1)}。\n达到[blue]50[/blue]层时，立即移除本效果，并获得[gold]闪耀[/gold]。
+
+- 花：造成的伤害减少[blue]{DamageReduction}%[/blue]。\n[blue]1~5[/blue]层：失去[blue]1[/blue]点[gold]力量[/gold]。\n[blue]6~7[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]。\n[blue]8~10[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]11~20[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]21~30[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]2[/blue]层[gold]花[/gold]。\n达到[blue]20[/blue]层时，立即移除本效果，并获得[blue]3[/blue]层[gold]绽放[/gold]。\n回合结束时，减少[blue]1[/blue]层。
+
+- 花之楔：受到的伤害+{Amount}。\n自身的回合结束时，受到{Amount}点伤害，并将层数减少为原先的[blue]2/3[/blue]。
+
+- 绽放：失去[blue]5[/blue]点力量。\n造成的伤害减少[blue]50%[/blue]，受到的伤害增加[blue]50%[/blue]。\n不能被施加[gold]花[/gold]，改为每被施加一层，受到[blue]10[/blue]点伤害并失去[blue]2[/blue]点[gold]临时力量[/gold]。\n回合结束时，减少[blue]1[/blue]层。
+
+- 闪耀：获得[blue]5[/blue]点力量和敏捷。\n造成的伤害增加[blue]50%[/blue]，受到的伤害减少[blue]25%[/blue]。\n每回合额外获得{energyPrefix:energyIcons(2)}。\n所有消耗[gold]星[/gold]的牌不再消耗[gold]星[/gold]且视为最大消耗量。\n不能获得[gold]星[/gold]，改为每获得[blue]1[/blue]层，对全体敌方单位造成[blue]10[/blue]点伤害并施加[blue]2[/blue]层[gold]花[/gold]。
+
 ---
 
 ## Cards
@@ -114,16 +127,16 @@
 |---|---|---|---|---|
 | 花海降临 | FlowerSeaArrival | 技能 | 1 | 对所有敌人施加5/8层[花]。抽2/3张牌。 |
 | 星陨 | Starfall | 攻击 | 3 | 造成20/27点伤害。获得5/7层[星]。移除目标的所有[花]并施加等量的[花之楔]。 |
-| 永恒之花 | EternalFlower | 能力 | 2 | 每当你施加[花]时，额外施加1层[花之楔]。 |
+| 永恒之花 | EternalFlower | 能力 | 2 | 每当你施加[花]时，额外施加1/2层[花之楔]。 |
 
 
 ### 普通 Common
 | 卡牌名 | ID | 类型 | 费用 | 效果 |
 |---|---|---|---|---|
 | 繁星 | MyriadStars | 攻击 | 1 | 消耗至多2/3层[星]。每消耗1层，造成8/10点伤害1次。 |
-| 星之雨 | StarRain | 攻击 | 1 | 对所有敌人造成6/8点伤害。若你拥有[星]，获得2层[星]。 |
+| 星之雨 | StarRain | 攻击 | 1 | 对所有敌人造成6/8点伤害。获得2层[星]。 |
 | 星光重击 | StarlightSmite | 攻击 | 1 | 造成10点伤害。消耗1层[星]，对目标施加2/3层易伤。 |
-| 星辉打击 | StarlightStrike | 攻击 | 1 | 造成6/8点伤害。获得1/2层[星]。 |
+| 星辉 | StarlightStrike | 攻击 | 1 | 造成6/8点伤害。获得1/2层[星]。 |
 | 收割 | Harvest | 攻击 | 2 | 场上每存在一名敌方单位，对所有敌方单位造成6/8点伤害一次。对带有[花]的目标伤害翻倍。消耗。 |
 | 播种 | SeedSowing | 攻击 | 1 | 造成8点伤害。施加2/3层[花]。 |
 | 花之刺 | FlowerSting | 攻击 | 1 | 造成4/5点伤害两次。若目标带有[花]，施加1/2层易伤。 |
@@ -206,5 +219,5 @@
 | 星核 | StarCore | 能力 | 2 | 在你的回合开始时，你每有15/12层[星]，获得1点能量。 |
 | 不灭之星 | UndyingStar | 能力 | 1 | 每当你消耗不少于3/2层[星]时，获得1层[星]。 |
 | 花之化身 | FlowerIncarnation | 能力 | 2 | 每当你施加[花]时，对随机敌人施加1/2层[花]。 |
-| 战术预测-制约 | Restraint | 能力 | 0 | 打出攻击牌时，若自身造成的伤害与目标的伤害相差在3/4以内，则将目标击晕（均按单段伤害计算） |
+| 制约 | Restraint | 能力 | 0 | 打出攻击牌时，若自身造成的伤害与目标的伤害相差在3/4以内，则将目标击晕（均按单段伤害计算） |
 

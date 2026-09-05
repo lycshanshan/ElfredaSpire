@@ -9,15 +9,15 @@
 
 ### 先古
 - [x] FlowerSeaArrival 花海降临
-- [ ] Starfall 星陨
-- [ ] EternalFlower 永恒之花
+- [x] Starfall 星陨
+- [x] EternalFlower 永恒之花
 
 ### 普通 Common
-- [ ] MyriadStars 繁星
-- [ ] StarRain 星之雨
+- [x] MyriadStars 繁星
+- [x] StarRain 星之雨
 - [x] StarlightSmite 星光重击
-- [x] StarlightStrike 星辉打击
-- [ ] Harvest 收割
+- [x] StarlightStrike 星辉
+- [x] Harvest 收割
 - [x] SeedSowing 播种
 - [ ] FlowerSting 花之刺
 - [x] StarryFlower 星空之花
@@ -91,4 +91,4 @@
 - [ ] StarCore 星核
 - [ ] UndyingStar 不灭之星
 - [ ] FlowerIncarnation 花之化身
-- [ ] Restraint 战术预测-制约
+- [ ] Restraint 制约

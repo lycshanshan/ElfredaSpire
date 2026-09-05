@@ -1,9 +1,9 @@
+// | 星辉 | StarlightStrike | 攻击 | 1 | 造成6/8点伤害。获得1/2层[星]。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,6 +27,8 @@ public class StarlightStrike : ModCardTemplate
         // PortraitBorderPath: "",
         // BannerTexturePath: "" 
     );
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<StarElfredaPower>(1)];
 

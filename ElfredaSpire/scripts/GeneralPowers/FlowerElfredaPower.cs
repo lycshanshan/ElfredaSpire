@@ -15,6 +15,8 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -28,6 +30,8 @@ public class FlowerElfredaPower : ModPowerTemplate
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<BloomPower>()];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageReduction", 5)];
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target,
@@ -55,6 +59,7 @@ public class FlowerElfredaPower : ModPowerTemplate
         {
             return;
         }
+        DynamicVars["DamageReduction"].BaseValue = Amount + 5;
 
         int previousAmount = Amount - (int)amount;
         int previousStrengthLoss = GetStrengthLoss(previousAmount);
