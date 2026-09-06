@@ -1,9 +1,10 @@
+// | 星光冲击 | StarlightImpact | 攻击 | 2 | 造成16/19点伤害。本回合自身每打出过一张攻击牌，获得1层[星]。 |
+
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,11 +29,23 @@ public class StarlightImpact : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(16, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+
+        int attacksPlayedThisTurn = CombatManager.Instance.History.CardPlaysFinished.Count(entry =>
+            entry.HappenedThisTurn(CombatState) &&
+            entry.CardPlay.Card.Type == CardType.Attack &&
+            entry.CardPlay.Card.Owner == Owner);
+
+        if (attacksPlayedThisTurn > 0)
+        {
+            await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, attacksPlayedThisTurn, Owner.Creature, cardPlay.Card);
+        }
     }
 
     protected override void OnUpgrade()

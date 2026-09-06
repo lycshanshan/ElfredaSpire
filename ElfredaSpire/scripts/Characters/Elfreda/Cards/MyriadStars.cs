@@ -25,7 +25,7 @@ public class MyriadStars : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+        if (cardPlay.Target is null) { return; }
 
         StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
         if (star is null)

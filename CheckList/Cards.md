@@ -35,51 +35,51 @@
 - [x] SelfCultivation 修身养性
 
 ### 罕见 Uncommon
-- [ ] LifeDrain 生命汲取
-- [ ] FlowerDetonation 标记引爆-花
-- [ ] WedgeDetonation 标记引爆-楔
-- [ ] Supernova 超新星
-- [ ] FlowerWedge 花之楔
+- [x] LifeDrain 生命汲取
+- [x] FlowerDetonation 标记引爆-花
+- [x] WedgeDetonation 标记引爆-楔
+- [x] Supernova 超新星
+- [x] FlowerWedge 花之楔
 - [x] StarforgedBlade 星铸刀刃
 - [x] Pluck 采撷
-- [ ] FlowerWeaver 织花者
-- [ ] DeepWedgeImplant 花楔深埋
-- [ ] Adaptability 随机应变
-- [ ] StarlightCollection 星光收集
-- [ ] PetalCollection 花瓣收集
+- [x] FlowerWeaver 织花者
+- [x] DeepWedgeImplant 花楔深埋
+- [x] Adaptability 随机应变
+- [x] StarlightCollection 星光收集
+- [x] PetalCollection 花瓣收集
 - [x] ReleaseStars 释放星辰
-- [ ] StarRipple 星之涟漪
+- [x] StarRipple 星之涟漪
 - [x] FlowerMark 花之印记
 - [x] FlowerStorm 花之风暴
-- [ ] StarlightBarrier 星光屏障
-- [ ] FlowerSeaEmbrace 花海之拥
-- [ ] DoubleBloom 双重绽放
-- [ ] StarFlowerSwap 星花转换
+- [x] StarlightBarrier 星光屏障
+- [x] FlowerSeaEmbrace 花海之拥
+- [x] DoubleBloom 双重绽放
+- [x] StarFlowerSwap 星花转换
 - [x] StarVeinCharge 星脉充能
-- [ ] PollenSpread 花粉传播
+- [x] PollenSpread 花粉传播
 - [x] Festival 祭典
-- [ ] SimulatedOffering 拟造供奉
+- [x] SimulatedOffering 拟造供奉
 - [x] WedgeBeacon 楔之导标
-- [ ] StarlightForge 星光铸造
+- [x] StarlightForge 星光铸造
 - [x] FlowerSeaGuide 花海引路
-- [ ] StarlightArmor 星辉护甲
-- [ ] StarlightRecycle 星光回收
-- [ ] StarlightBlessing 星光护佑
-- [ ] Afterglow 余辉
-- [ ] FlowerOath 花之誓约
-- [ ] Accumulation 积累
+- [x] StarlightArmor 星辉护甲
+- [x] StarlightRecycle 星光回收
+- [x] StarlightBlessing 星光护佑
+- [x] Afterglow 余辉
+- [x] FlowerOath 花之誓约
+- [x] Accumulation 积累
 
 ### 稀有 Rare
-- [ ] NebulaWave 星云波动
-- [ ] StarlightFlow 星光流转
-- [ ] StarlightImpact 星光冲击
-- [ ] GalaxyReversal 星河倒转
-- [ ] FlowerSeaFury 花海之怒
+- [x] NebulaWave 星云波动
+- [x] StarlightFlow 星光流转
+- [x] StarlightImpact 星光冲击
+- [x] GalaxyReversal 星河倒转
+- [x] FlowerSeaFury 花海之怒
 - [x] FinalBloom 终末之花
-- [ ] MeteorShower 流星雨
-- [ ] StarfieldEnd 星空的尽头
-- [ ] BurnTheStars 燃尽群星
-- [ ] FlowerSeaBloom 花海绽放
+- [x] MeteorShower 流星雨
+- [x] StarfieldEnd 星空的尽头
+- [x] BurnTheStars 燃尽群星
+- [x] FlowerSeaBloom 花海绽放
 - [x] StarlightRadiance 星光辐射
 - [x] WedgeScatter 标记散射
 - [ ] BorrowedStarlight 预借星辉

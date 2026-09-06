@@ -1,14 +1,12 @@
+// | 星铸刀刃 | StarforgedBlade | 攻击 | 1 | 造成7/10点伤害。抽1/2张牌。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.ValueProps;
-using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 

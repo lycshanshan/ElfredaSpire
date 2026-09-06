@@ -1,3 +1,5 @@
+// | 花海之拥 | FlowerSeaEmbrace | 技能 | 2 | 获得24/30点格挡。对自身施加6/4层[花]。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -15,7 +17,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class FlowerSeaEmbrace : ModCardTemplate
 {
-    public FlowerSeaEmbrace() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    public FlowerSeaEmbrace() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
     {
     }
 
@@ -28,15 +30,19 @@ public class FlowerSeaEmbrace : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(12, BlockProps.card)];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(24, BlockProps.card), new PowerVar<FlowerElfredaPower>(6)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(this.Owner.Creature, this.DynamicVars.Block, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, Owner.Creature, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars.Block.UpgradeValueBy(6);
+        DynamicVars["FlowerElfredaPower"].UpgradeValueBy(-2);
     }
 }

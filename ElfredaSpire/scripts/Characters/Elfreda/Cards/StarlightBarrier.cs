@@ -1,3 +1,5 @@
+// | 星光屏障 | StarlightBarrier | 技能 | 1 | 获得7/9点格挡。消耗至多2层[星]，每消耗1层，获得3/5点格挡。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
@@ -28,15 +30,41 @@ public class StarlightBarrier : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(7, BlockProps.card)];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new BlockVar(7, BlockProps.card),
+        new IntVar("MaxStarConsume", 2),
+        new BlockVar("ExtraBlock", 2, BlockProps.card)
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(this.Owner.Creature, this.DynamicVars.Block, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+
+        StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
+        if (star is null) { return; }
+
+        int previousAmount = star.Amount;
+        int amountToConsume = Math.Min(previousAmount, DynamicVars["MaxStarConsume"].IntValue);
+        int newAmount = await PowerCmd.ModifyAmount(
+            choiceContext,
+            star,
+            -amountToConsume,
+            Owner.Creature,
+            cardPlay.Card);
+        int amountConsumed = previousAmount - Math.Max(0, newAmount);
+
+        for (int i = 0; i < amountConsumed; i++)
+        {
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        }
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars.Block.UpgradeValueBy(2);
+        DynamicVars["ExtraBlock"].UpgradeValueBy(2);
     }
 }

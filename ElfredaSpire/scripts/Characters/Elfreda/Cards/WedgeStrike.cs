@@ -35,12 +35,12 @@ public class WedgeStrike : ModCardTemplate
     [
         new DamageVar(6, ValueProp.Move), // now wasted
         new IntVar("ExtraDamage", 2),
-        ModCardVars.ComputedDamage("DamageValue", 6, (card, target) => card!.DynamicVars["DamageValue"].BaseValue + (target?.GetPowerAmount<FlowerWedgePower>() ?? 0)),
+        ModCardVars.ComputedDamage("DamageValue", 6, (card, target) => card!.DynamicVars["DamageValue"].BaseValue + (target?.GetPowerAmount<FlowerWedgePower>() ?? 0) * DynamicVars["ExtraDamage"].IntValue),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.EvaluateValueOrDefault("DamageValue")).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.EvaluateValueOrDefault("DamageValue", target: cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
         // await DamageCmd.Attack(DynamicVars.GetComputedValue("DamageValue")).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
     }
 

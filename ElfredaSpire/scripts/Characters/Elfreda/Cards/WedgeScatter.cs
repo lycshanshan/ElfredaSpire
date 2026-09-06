@@ -1,13 +1,12 @@
+// | 标记散射 | WedgeScatter | 技能 | 2 | 对所有敌人施加3/4层[花之楔]。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.ValueProps;
 using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
@@ -27,6 +26,8 @@ public class WedgeScatter : ModCardTemplate
         // PortraitBorderPath: "",
         // BannerTexturePath: "" 
     );
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(3)];
 

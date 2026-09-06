@@ -33,12 +33,10 @@ public class StarlightSmite : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move), new PowerVar<StarElfredaPower>(-1), new PowerVar<VulnerablePower>(2)];
 
-    protected override bool IsPlayable =>
-        Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= -DynamicVars["StarElfredaPower"].IntValue;
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        if (!(Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= -DynamicVars["StarElfredaPower"].IntValue)) { return; }
         await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target!, DynamicVars["VulnerablePower"].IntValue, Owner.Creature, cardPlay.Card);
     }

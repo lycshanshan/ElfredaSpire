@@ -1,13 +1,15 @@
+// | 星光收集 | StarlightCollection | 攻击 | 2 | 造成10点伤害。本场战斗中每获得过1次[星]，这张牌的伤害+2/3。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Combat;
+using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.ValueProps;
 using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
@@ -19,6 +21,38 @@ public class StarlightCollection : ModCardTemplate
     {
     }
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("ExtraDamage", 2),
+        ModCardVars.ComputedDamage("DamageValue", 10, (card) => card!.DynamicVars["DamageValue"].BaseValue + CalculateExtraDamage())
+    ];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await DamageCmd.Attack(DynamicVars.EvaluateValueOrDefault("DamageValue", target: cardPlay.Target)).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+    }
+
+    private int CalculateExtraDamage()
+    {
+        int starsGained = CombatManager.Instance.History.Entries
+            .OfType<PowerReceivedEntry>()
+            .Count(entry => entry.Power is StarElfredaPower &&
+                            entry.Power.Owner == Owner.Creature &&
+                            entry.Amount > 0m);
+            // .Where(entry => entry.Power is StarElfredaPower
+            //     && entry.Power.Owner == Owner.Creature
+            //     && entry.Amount > 0m)
+            // .Sum(entry => (int)entry.Amount);
+
+        return starsGained * DynamicVars["ExtraDamage"].IntValue;
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars["ExtraDamage"].UpgradeValueBy(1);
+    }
 
     // 卡图资源
     public override CardAssetProfile AssetProfile => new(
@@ -27,11 +61,4 @@ public class StarlightCollection : ModCardTemplate
         // PortraitBorderPath: "",
         // BannerTexturePath: "" 
     );
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move)];
-
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
-    }
 }

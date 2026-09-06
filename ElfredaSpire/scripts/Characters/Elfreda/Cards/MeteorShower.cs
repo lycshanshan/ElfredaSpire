@@ -1,14 +1,12 @@
+// | 流星雨 | MeteorShower | 攻击 | 3 | 随机造成3/4点伤害7/8次。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.ValueProps;
-using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
@@ -19,6 +17,26 @@ public class MeteorShower : ModCardTemplate
     {
     }
 
+    protected override IEnumerable<DynamicVar> CanonicalVars => 
+    [
+        new DamageVar(3, ValueProp.Move),
+        new IntVar("HitCount", 7)
+    ];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .WithHitCount(DynamicVars["HitCount"].IntValue)
+            .FromCard(this)
+            .Targeting(cardPlay.Target!)
+            .Execute(choiceContext);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Damage.UpgradeValueBy(1);
+        DynamicVars["HitCount"].UpgradeValueBy(1);
+    }
 
     // 卡图资源
     public override CardAssetProfile AssetProfile => new(

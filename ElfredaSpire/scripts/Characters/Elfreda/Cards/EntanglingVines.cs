@@ -28,7 +28,7 @@ public class EntanglingVines : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>(), HoverTipFactory.FromPower<StrengthPower>()];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>(), HoverTipFactory.FromPower<StrengthPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(1), new PowerVar<StrengthPower>(-1)];
 

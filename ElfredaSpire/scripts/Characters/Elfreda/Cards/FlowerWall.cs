@@ -41,7 +41,7 @@ public class FlowerWall : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.EvaluateValueOrDefault("BlockValue"), BlockProps.card, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.EvaluateValueOrDefault("BlockValue", target: Owner.Creature), BlockProps.card, cardPlay);
     }
 
     protected override void OnUpgrade()

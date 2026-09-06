@@ -1,14 +1,12 @@
+// | 随机应变 | Adaptability | 攻击 | 2/1 | 造成10点伤害。若目标的意图为攻击，获得等同于未被格挡的伤害量的格挡。否则，获得2点能量。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.ValueProps;
-using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
@@ -32,7 +30,17 @@ public class Adaptability : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        if (cardPlay.Target is null) { return; }
+        var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        if (cardPlay.Target.Monster!.IntendsToAttack)
+        {
+            var unblockedDamage = attack.Results.SelectMany(results => results).Sum(result => result.UnblockedDamage);
+            await CreatureCmd.GainBlock(Owner.Creature, unblockedDamage, ValueProp.Move, cardPlay);
+        }
+        else
+        {
+            await PlayerCmd.GainEnergy(2m, Owner);
+        }
     }
 
     protected override void OnUpgrade()
