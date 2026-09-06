@@ -13,7 +13,7 @@ using ElfredaSpire.GeneralPowers;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 1)]
+[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
 public class StarForce : ModCardTemplate
 {
     public StarForce() : base(2, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)

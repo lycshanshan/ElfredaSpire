@@ -1,9 +1,10 @@
+// | 楔击 | WedgeStrike | 攻击 | 1 | 造成6点伤害。目标每有一层[花之楔]，额外造成2/3点伤害。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
+using STS2RitsuLib.Cards.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,10 +29,23 @@ public class WedgeStrike : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move)];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => 
+    [
+        new DamageVar(6, ValueProp.Move), // now wasted
+        new IntVar("ExtraDamage", 2),
+        ModCardVars.ComputedDamage("DamageValue", 6, (card, target) => card!.DynamicVars["DamageValue"].BaseValue + (target?.GetPowerAmount<FlowerWedgePower>() ?? 0)),
+    ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.EvaluateValueOrDefault("DamageValue")).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+        // await DamageCmd.Attack(DynamicVars.GetComputedValue("DamageValue")).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars["ExtraDamage"].UpgradeValueBy(1);
     }
 }

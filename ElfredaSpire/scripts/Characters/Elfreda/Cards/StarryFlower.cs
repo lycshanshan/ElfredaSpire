@@ -1,9 +1,9 @@
+// | 星空之花 | StarryFlower | 攻击 | 1 | 造成7/10点伤害。消耗1层[星]，施加3/4层[花]。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,13 +28,18 @@ public class StarryFlower : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>(), HoverTipFactory.FromPower<FlowerElfredaPower>()];
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move), new PowerVar<StarElfredaPower>(-1), new PowerVar<FlowerElfredaPower>(3)];
+
+    protected override bool IsPlayable =>
+        Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= -DynamicVars["StarElfredaPower"].IntValue;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
         await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, Owner.Creature, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

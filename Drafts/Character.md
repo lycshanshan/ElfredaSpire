@@ -98,7 +98,7 @@
 
 ### 本地化文本
 
-- 星：造成的伤害增加[blue]{amount}%[/blue]。\n[blue]5~7[/blue]层：获得[blue]1[/blue]层[gold]敏捷[/gold]。\n8~10层：获得[blue]1[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]。\n[blue]11~17[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]，[blue]2[/blue]层[gold]敏捷[/gold]，受到的伤害减少[blue]10%[/blue]。\n[blue]18~25[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]20%[/blue]。\n[blue]26~50[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]25%[/blue]，每回合额外获得{energyPrefix:energyIcons(1)}。\n达到[blue]50[/blue]层时，立即移除本效果，并获得[gold]闪耀[/gold]。
+- 星：造成的伤害增加[blue]{Amount}%[/blue]。\n[blue]5~7[/blue]层：获得[blue]1[/blue]层[gold]敏捷[/gold]。\n[blue]8~10[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]。\n[blue]11~17[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]，[blue]2[/blue]层[gold]敏捷[/gold]，受到的伤害减少[blue]10%[/blue]。\n[blue]18~25[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]20%[/blue]。\n[blue]26~50[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]25%[/blue]，每回合额外获得{Energy:energyIcons()}。\n达到[blue]50[/blue]层时，立即移除本效果，并获得[gold]闪耀[/gold]。
 
 - 花：造成的伤害减少[blue]{DamageReduction}%[/blue]。\n[blue]1~5[/blue]层：失去[blue]1[/blue]点[gold]力量[/gold]。\n[blue]6~7[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]。\n[blue]8~10[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]11~20[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]21~30[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]2[/blue]层[gold]花[/gold]。\n达到[blue]20[/blue]层时，立即移除本效果，并获得[blue]3[/blue]层[gold]绽放[/gold]。\n回合结束时，减少[blue]1[/blue]层。
 
@@ -106,7 +106,7 @@
 
 - 绽放：失去[blue]5[/blue]点力量。\n造成的伤害减少[blue]50%[/blue]，受到的伤害增加[blue]50%[/blue]。\n不能被施加[gold]花[/gold]，改为每被施加一层，受到[blue]10[/blue]点伤害并失去[blue]2[/blue]点[gold]临时力量[/gold]。\n回合结束时，减少[blue]1[/blue]层。
 
-- 闪耀：获得[blue]5[/blue]点力量和敏捷。\n造成的伤害增加[blue]50%[/blue]，受到的伤害减少[blue]25%[/blue]。\n每回合额外获得{energyPrefix:energyIcons(2)}。\n所有消耗[gold]星[/gold]的牌不再消耗[gold]星[/gold]且视为最大消耗量。\n不能获得[gold]星[/gold]，改为每获得[blue]1[/blue]层，对全体敌方单位造成[blue]10[/blue]点伤害并施加[blue]2[/blue]层[gold]花[/gold]。
+- 闪耀：获得[blue]5[/blue]点力量和敏捷。\n造成的伤害增加[blue]50%[/blue]，受到的伤害减少[blue]25%[/blue]。\n每回合额外获得{Energy:energyIcons()}。\n所有消耗[gold]星[/gold]的牌不再消耗[gold]星[/gold]且视为最大消耗量。\n不能获得[gold]星[/gold]，改为每获得[blue]1[/blue]层，对全体敌方单位造成[blue]10[/blue]点伤害并施加[blue]2[/blue]层[gold]花[/gold]。
 
 ---
 
@@ -145,9 +145,9 @@
 | 楔击 | WedgeStrike | 攻击 | 1 | 造成6点伤害。目标每有一层[花之楔]，额外造成2/3点伤害。 |
 | 引星 | StarAttraction | 技能 | 0 | 获得2/3层[星]。抽1张牌。 |
 | 星尘 | Stardust | 技能 | 1 | 获得2/3层[星]。下回合开始时获得2层[星]。 |
-| 星之指引 | StarGuidance | 技能 | 1 | 抽2张牌。若你拥有[星]，额外抽1张牌。 |
+| 星之指引 | StarGuidance | 技能 | 1 | 抽2张牌。消耗2层[星]，额外抽1/2张牌。 |
 | 星之壁 | StarWall | 技能 | 1 | 获得4点格挡。每有1层[星]，额外获得2/3点格挡。 |
-| 生机吸收 | VitalityDrain | 技能 | 1 | 移除目标的所有[花]并恢复等量生命。消耗。 |
+| 生机吸收 | VitalityDrain | 技能 | 1/0 | 移除目标的所有[花]并恢复等量生命。消耗。 |
 | 花之雨 | FlowerRain | 技能 | 1 | 对所有敌人施加2/3层[花]。 |
 | 花之壁 | FlowerWall | 技能 | 1 | 获得6/8点格挡。每有一个带有[花]的敌人，额外获得3/4点格挡。 |
 | 花粉 | Pollen | 技能 | 0 | 施加1/2层[花]。获得4/6点格挡。 |

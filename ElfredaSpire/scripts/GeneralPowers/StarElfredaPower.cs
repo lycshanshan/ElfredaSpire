@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -28,6 +29,7 @@ public class StarElfredaPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<GlitterPower>()];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target,
@@ -73,8 +75,8 @@ public class StarElfredaPower : ModPowerTemplate
         {
             Flash();
             await PowerCmd.Remove(this);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -GetStrengthBonus(Amount), Owner, null);
-            await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, -GetDexterityBonus(Amount), Owner, null);
+            // await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -GetStrengthBonus(Amount), Owner, null);
+            // await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, -GetDexterityBonus(Amount), Owner, null);
             await PowerCmd.Apply<GlitterPower>(choiceContext, Owner, 1, Owner, null);
             return;
         }
@@ -100,6 +102,16 @@ public class StarElfredaPower : ModPowerTemplate
             Flash();
             await PlayerCmd.GainEnergy(1m, player);
         }
+    }
+
+    public override async Task AfterRemoved(Creature oldOwner)
+    {
+        int strengthBonus = GetStrengthBonus(Amount);
+        int dexterityBonus = GetDexterityBonus(Amount);
+        if (strengthBonus > 0)
+            await PowerCmd.Apply<StrengthPower>(new ThrowingPlayerChoiceContext(), oldOwner, -strengthBonus, oldOwner, null);
+        if (dexterityBonus > 0)
+            await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), oldOwner, -dexterityBonus, oldOwner, null);
     }
 
     private decimal GetDamageReduction()

@@ -33,7 +33,7 @@ public class FlowerSeaArrival : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, Owner.Creature, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 

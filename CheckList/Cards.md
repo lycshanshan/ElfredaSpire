@@ -19,20 +19,20 @@
 - [x] StarlightStrike 星辉
 - [x] Harvest 收割
 - [x] SeedSowing 播种
-- [ ] FlowerSting 花之刺
+- [x] FlowerSting 花之刺
 - [x] StarryFlower 星空之花
 - [x] WeakeningPierce 削弱刺击
-- [ ] WedgeStrike 楔击
+- [x] WedgeStrike 楔击
 - [x] StarAttraction 引星
-- [ ] Stardust 星尘
-- [ ] StarGuidance 星之指引
-- [ ] StarWall 星之壁
-- [ ] VitalityDrain 生机吸收
+- [x] Stardust 星尘
+- [x] StarGuidance 星之指引
+- [x] StarWall 星之壁
+- [x] VitalityDrain 生机吸收
 - [x] FlowerRain 花之雨
-- [ ] FlowerWall 花之壁
+- [x] FlowerWall 花之壁
 - [x] Pollen 花粉
 - [x] EntanglingVines 缠绕藤蔓
-- [ ] SelfCultivation 修身养性
+- [x] SelfCultivation 修身养性
 
 ### 罕见 Uncommon
 - [ ] LifeDrain 生命汲取

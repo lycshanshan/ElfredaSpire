@@ -1,13 +1,12 @@
+// | 星尘 | Stardust | 技能 | 1 | 获得2/3层[星]。下回合开始时获得2层[星]。 |
+
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.ValueProps;
 using ElfredaSpire.GeneralPowers;
 
 namespace ElfredaSpire.Characters.Elfreda.Cards;
@@ -28,11 +27,14 @@ public class Stardust : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(2)];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(2), new PowerVar<NextTurnStarPower>(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<NextTurnStarPower>(choiceContext, Owner.Creature, DynamicVars["NextTurnStarPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

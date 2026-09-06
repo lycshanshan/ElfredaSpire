@@ -75,7 +75,7 @@ public class FlowerElfredaPower : ModPowerTemplate
         {
             Flash();
             await PowerCmd.Remove(this);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, GetStrengthLoss(Amount), null, null);
+            // await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, GetStrengthLoss(Amount), null, null);
             await PowerCmd.Apply<BloomPower>(choiceContext, Owner, 3, null, null);
         }
     }

@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 4)]
+[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 4)]
 public class DefendElfreda : ModCardTemplate
 {
     public DefendElfreda() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self, true)
@@ -30,7 +30,7 @@ public class DefendElfreda : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await CreatureCmd.GainBlock(this.Owner.Creature, this.DynamicVars.Block, cardPlay);
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade()

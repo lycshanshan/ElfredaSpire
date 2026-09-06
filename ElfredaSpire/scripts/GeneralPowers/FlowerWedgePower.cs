@@ -15,7 +15,7 @@ namespace ElfredaSpire.GeneralPowers;
 [RegisterPower]
 public class FlowerWedgePower : ModPowerTemplate
 {
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override decimal ModifyDamageAdditive(

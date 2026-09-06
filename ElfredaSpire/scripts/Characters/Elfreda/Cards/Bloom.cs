@@ -12,7 +12,7 @@ using ElfredaSpire.GeneralPowers;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCardPool), 1)]
+[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
 public class Bloom : ModCardTemplate
 {
     public Bloom() : base(0, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy, true)
@@ -34,7 +34,7 @@ public class Bloom : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, Owner.Creature, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 
