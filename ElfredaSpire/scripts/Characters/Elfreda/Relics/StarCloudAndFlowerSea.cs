@@ -37,12 +37,16 @@ public class StarCloudAndFlowerSea : ModRelicTemplate
             AssertMutable();
             _count = value;
             DynamicVars["Count"].BaseValue = value;
+            DynamicVars["StarAmount"].BaseValue = value + 15;
             InvokeDisplayAmountChanged();
         }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("Count", StartingCount)];
+        [
+            new DynamicVar("Count", StartingCount),
+            new DynamicVar("StarAmount", StartingCount + 15)
+        ];
 
     public override RelicAssetProfile AssetProfile => new(
         IconPath: $"{Entry.ResPath}/images/relics/{GetType().Name}.png",

@@ -27,13 +27,13 @@ public class SelfCultivation : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, BlockProps.card), new PowerVar<DrawCardsNextTurnPower>(2), new PowerVar<EnergyNextTurnPower>(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(6, BlockProps.card), new PowerVar<DrawCardsNextTurnPower>(2), new EnergyVar(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
         await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, Owner.Creature, DynamicVars["DrawCardsNextTurnPower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, DynamicVars["EnergyNextTurnPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

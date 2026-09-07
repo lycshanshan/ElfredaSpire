@@ -1,3 +1,9 @@
 {
-    "SEA_GLASS.ELFREDA_SPIRE_CHARACTER_ELFREDA.title": "星云玻璃"
+    "SEA_GLASS.ELFREDA_SPIRE_CHARACTER_ELFREDA.title": "星云玻璃",
+    "ELFREDA_SPIRE_RELIC_STAR_AND_FLOWER.title": "星与花",
+    "ELFREDA_SPIRE_RELIC_STAR_AND_FLOWER.description": "战斗开始时，获得[blue]{Count}[/blue]层[gold]星[/gold]。\n每场战斗中，[gold]星[/gold]的层数第一次达到[blue]{UpgradeThreshold}[/blue]时，升级。",
+    "ELFREDA_SPIRE_RELIC_STAR_AND_FLOWER.flavor": "花海贤者最常用的法器。",
+    "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.title": "星云与花海",
+    "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.description": "战斗开始时，获得[blue]{StarAmount}[/blue]层[gold]星[/gold]，并对所有敌人施加[blue]{Count}[/blue]层[gold]花[/gold]。\n战斗中，每次获得[gold]闪耀[/gold]或生成[gold]绽放[/gold]时，升级。",
+    "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.flavor": "花海贤者最常用的法器。被激发到极限的姿态。"
 }

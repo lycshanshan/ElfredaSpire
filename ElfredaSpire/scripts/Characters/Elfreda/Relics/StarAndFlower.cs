@@ -39,12 +39,16 @@ public class StarAndFlower : ModRelicTemplate
             AssertMutable();
             _count = value;
             DynamicVars["Count"].BaseValue = value;
+            DynamicVars["UpgradeThreshold"].BaseValue = value * 2;
             InvokeDisplayAmountChanged();
         }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DynamicVar("Count", StartingCount)];
+        [
+            new DynamicVar("Count", StartingCount),
+            new DynamicVar("UpgradeThreshold", StartingCount * 2)
+        ];
 
     public override RelicAssetProfile AssetProfile => new(
         IconPath: $"{Entry.ResPath}/images/relics/{GetType().Name}.png",
