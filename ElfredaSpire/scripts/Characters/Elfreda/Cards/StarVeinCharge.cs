@@ -29,14 +29,16 @@ public class StarVeinCharge : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(-2), new EnergyVar(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(2), new EnergyVar(3)];
 
     protected override bool IsPlayable =>
-        Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= -DynamicVars["StarElfredaPower"].IntValue;
+        Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= DynamicVars["StarElfredaPower"].IntValue
+        || Owner.Creature.HasPower<GlitterPower>();
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (!Owner.Creature.HasPower<GlitterPower>())
+            await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 

@@ -65,7 +65,7 @@ public class BloomPower : ModPowerTemplate
         Creature? applier,
         out decimal modifiedAmount)
     {
-        if (target == Owner && canonicalPower is FlowerElfredaPower && amount > 0m)
+        if (target == Owner && canonicalPower is FlowerElfredaPower) // && amount > 0m
         {
             _pendingFlowerGained += (int)amount;
             modifiedAmount = 0m;

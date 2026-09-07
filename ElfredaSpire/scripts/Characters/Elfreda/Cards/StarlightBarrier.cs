@@ -4,8 +4,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -44,17 +42,23 @@ public class StarlightBarrier : ModCardTemplate
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
         StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
-        if (star is null) { return; }
-
-        int previousAmount = star.Amount;
-        int amountToConsume = Math.Min(previousAmount, DynamicVars["MaxStarConsume"].IntValue);
-        int newAmount = await PowerCmd.ModifyAmount(
-            choiceContext,
-            star,
-            -amountToConsume,
-            Owner.Creature,
-            cardPlay.Card);
-        int amountConsumed = previousAmount - Math.Max(0, newAmount);
+        int amountConsumed = 0;
+        if (Owner.Creature.HasPower<GlitterPower>())
+        {
+            amountConsumed = DynamicVars["MaxStarConsume"].IntValue;
+        }
+        else if (star is not null)
+        {
+            int previousAmount = star.Amount;
+            int amountToConsume = Math.Min(previousAmount, DynamicVars["MaxStarConsume"].IntValue);
+            int newAmount = await PowerCmd.ModifyAmount(
+                choiceContext,
+                star,
+                -amountToConsume,
+                Owner.Creature,
+                cardPlay.Card);
+            amountConsumed = previousAmount - Math.Max(0, newAmount);
+        }
 
         for (int i = 0; i < amountConsumed; i++)
         {

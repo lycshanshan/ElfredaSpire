@@ -80,7 +80,7 @@ public class GlitterPower : ModPowerTemplate
         Creature? applier,
         out decimal modifiedAmount)
     {
-        if (target == Owner && canonicalPower is StarElfredaPower && amount > 0m)
+        if (target == Owner && canonicalPower is StarElfredaPower)// && amount > 0m
         {
             _pendingStarGained += (int)amount;
             modifiedAmount = 0m;

@@ -32,7 +32,7 @@ public class StarGuidance : ModCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(2),
-        new PowerVar<StarElfredaPower>(-2),
+        new PowerVar<StarElfredaPower>(2),
         new IntVar("ExtraCards", 1)
     ];
 
@@ -40,14 +40,12 @@ public class StarGuidance : ModCardTemplate
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
 
-        StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
-        int starCost = -DynamicVars["StarElfredaPower"].IntValue;
-        if (star is null || star.Amount < starCost)
+        if (!(Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= DynamicVars["StarElfredaPower"].IntValue) && !Owner.Creature.HasPower<GlitterPower>())
         {
             return;
         }
 
-        await PowerCmd.ModifyAmount(choiceContext, star, -starCost, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await CardPileCmd.Draw(choiceContext, DynamicVars["ExtraCards"].IntValue, Owner);
     }
 

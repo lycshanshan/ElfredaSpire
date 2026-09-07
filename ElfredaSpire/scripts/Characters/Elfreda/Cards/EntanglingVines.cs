@@ -30,17 +30,17 @@ public class EntanglingVines : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>(), HoverTipFactory.FromPower<StrengthPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(1), new PowerVar<StrengthPower>(-1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(1), new PowerVar<StrengthPower>(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<FlowerWedgePower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, DynamicVars["StrengthPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, -DynamicVars["StrengthPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
     {
         DynamicVars["FlowerWedgePower"].UpgradeValueBy(1);
-        DynamicVars["StrengthPower"].UpgradeValueBy(-1);
+        DynamicVars["StrengthPower"].UpgradeValueBy(1);
     }
 }

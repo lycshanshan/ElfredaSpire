@@ -30,15 +30,17 @@ public class StarryFlower : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>(), HoverTipFactory.FromPower<FlowerElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move), new PowerVar<StarElfredaPower>(-1), new PowerVar<FlowerElfredaPower>(3)];
-
-    protected override bool IsPlayable =>
-        Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= -DynamicVars["StarElfredaPower"].IntValue;
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move), new PowerVar<StarElfredaPower>(1), new PowerVar<FlowerElfredaPower>(3)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
-        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+
+        if (!(Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= DynamicVars["StarElfredaPower"].IntValue) && !Owner.Creature.HasPower<GlitterPower>())
+        {
+            return;
+        }
+        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 

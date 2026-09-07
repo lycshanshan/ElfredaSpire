@@ -37,15 +37,23 @@ public class StarlightFlow : ModCardTemplate
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target!).Execute(choiceContext);
 
         StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
-        if (star is null)
+        int amountConsumed = 0;
+        if (Owner.Creature.HasPower<GlitterPower>())
         {
-            return;
+            amountConsumed = DynamicVars["MaxStarConsume"].IntValue;
         }
-
-        int previousAmount = star.Amount;
-        int amountToConsume = Math.Min(previousAmount, DynamicVars["MaxStarConsume"].IntValue);
-        int newAmount = await PowerCmd.ModifyAmount(choiceContext, star, -amountToConsume, Owner.Creature, cardPlay.Card);
-        int amountConsumed = previousAmount - Math.Max(0, newAmount);
+        else if (star is not null)
+        {
+            int previousAmount = star.Amount;
+            int amountToConsume = Math.Min(previousAmount, DynamicVars["MaxStarConsume"].IntValue);
+            int newAmount = await PowerCmd.ModifyAmount(
+                choiceContext,
+                star,
+                -amountToConsume,
+                Owner.Creature,
+                cardPlay.Card);
+            amountConsumed = previousAmount - Math.Max(0, newAmount);
+        }
 
         if (amountConsumed > 0)
         {
