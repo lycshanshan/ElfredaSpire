@@ -30,7 +30,7 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     public override int StartingGold => 99;
 
     public override CharacterAssetProfile AssetProfile => CharacterAssetProfiles.Merge(
-        CharacterAssetProfiles.Silent(),
+        CharacterAssetProfiles.Regent(),
         new(
             Scenes: new(
                 // 人物模型tscn路径。
@@ -98,7 +98,7 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
         ));
 
     // 某个字段没写时，RitsuLib 会从占位角色配置里补齐。
-    public override string? PlaceholderCharacterId => "Silent";
+    public override string? PlaceholderCharacterId => "Regent";
 
     // 攻击和施法动画延迟，以对齐动画
     public override float AttackAnimDelay => 0f;

@@ -34,7 +34,8 @@ public class EntanglingVines : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<FlowerWedgePower>(choiceContext, cardPlay.Target!, DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (cardPlay.Target is null) return;
+        await PowerCmd.Apply<FlowerWedgePower>(choiceContext, cardPlay.Target, DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
         await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, -DynamicVars["StrengthPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 

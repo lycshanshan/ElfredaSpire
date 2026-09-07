@@ -24,7 +24,8 @@ public class DoubleBloom : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target!.HasPower<BloomPower>())
+        if (cardPlay.Target is null) return;
+        if (cardPlay.Target.HasPower<BloomPower>())
         {
             await PowerCmd.Apply<BloomPower>(choiceContext, Owner.Creature, DynamicVars["BloomPower"].IntValue, Owner.Creature, cardPlay.Card);
         }

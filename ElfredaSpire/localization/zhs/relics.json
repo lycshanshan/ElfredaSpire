@@ -5,5 +5,11 @@
     "ELFREDA_SPIRE_RELIC_STAR_AND_FLOWER.flavor": "花海贤者最常用的法器。",
     "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.title": "星云与花海",
     "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.description": "战斗开始时，获得[blue]{StarAmount}[/blue]层[gold]星[/gold]，并对所有敌人施加[blue]{Count}[/blue]层[gold]花[/gold]。\n战斗中，每次获得[gold]闪耀[/gold]或生成[gold]绽放[/gold]时，升级。",
-    "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.flavor": "花海贤者最常用的法器。被激发到极限的姿态。"
+    "ELFREDA_SPIRE_RELIC_STAR_CLOUD_AND_FLOWER_SEA.flavor": "花海贤者最常用的法器。被激发到极限的姿态。",
+    "ELFREDA_SPIRE_RELIC_FLOWER_GOD_DEW.title": "花神之露",
+    "ELFREDA_SPIRE_RELIC_FLOWER_GOD_DEW.description": "战斗开始时，对一名随机敌人施加[blue]3[/blue]层[gold]花[/gold]。",
+    "ELFREDA_SPIRE_RELIC_FLOWER_GOD_DEW.flavor": "其实只是一瓶普通的香油。但作为祭祀用品，或许也是不错的选择？",
+    "ELFREDA_SPIRE_RELIC_WEDGE_BLADE.title": "楔之刃",
+    "ELFREDA_SPIRE_RELIC_WEDGE_BLADE.description": "施加[gold]花之楔[/gold]时，额外施加[blue]1[/blue]层。",
+    "ELFREDA_SPIRE_RELIC_WEDGE_BLADE.flavor": "点缀花朵的锋利刀刃。用它刺向敌人时，会看见花朵绽放。"
 }

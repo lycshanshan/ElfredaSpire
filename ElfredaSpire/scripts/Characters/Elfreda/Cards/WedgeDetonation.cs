@@ -31,13 +31,14 @@ public class WedgeDetonation : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target is null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount((int)DynamicVars.EvaluateValueOrDefault("HitCount", target: cardPlay.Target))
             .FromCard(this)
-            .Targeting(cardPlay.Target!)
+            .Targeting(cardPlay.Target)
             .Execute(choiceContext);
         
-        FlowerWedgePower? flowerWedge = cardPlay.Target!.GetPower<FlowerWedgePower>();
+        FlowerWedgePower? flowerWedge = cardPlay.Target.GetPower<FlowerWedgePower>();
         if (flowerWedge is null) { return; }
         await PowerCmd.Remove(flowerWedge);
     }

@@ -21,18 +21,19 @@ public class StarContract : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<NextTurnStarPower>(4), new EnergyVar(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<NextTurnStarPower>(4), new EnergyVar(2), new PowerVar<EnergyNextTurnPower>(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<NextTurnStarPower>(choiceContext, Owner.Creature, DynamicVars["NextTurnStarPower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, DynamicVars.Energy.IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, DynamicVars["EnergyNextTurnPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
     {
+        DynamicVars["NextTurnStarPower"].UpgradeValueBy(2);
         DynamicVars["EnergyNextTurnPower"].UpgradeValueBy(1);
-        DynamicVars.Energy.UpgradeValueBy(2);
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 
 

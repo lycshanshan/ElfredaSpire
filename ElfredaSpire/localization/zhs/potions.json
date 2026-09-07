@@ -1,2 +1,6 @@
 {
+    "ELFREDA_SPIRE_POTION_NEBULA_POTION.title": "星云药水",
+    "ELFREDA_SPIRE_POTION_NEBULA_POTION.description": "获得[blue]{StarElfredaPower}[/blue]层[gold]星[/gold]。",
+    "ELFREDA_SPIRE_POTION_FLOWER_DEW_POTION.title": "花之露",
+    "ELFREDA_SPIRE_POTION_FLOWER_DEW_POTION.description": "给予[blue]{FlowerElfredaPower}[/blue]层[gold]花[/gold]。"
 }

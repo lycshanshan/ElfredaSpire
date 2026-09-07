@@ -43,10 +43,10 @@ public class StarCloudAndFlowerSea : ModRelicTemplate
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [
-            new DynamicVar("Count", StartingCount),
-            new DynamicVar("StarAmount", StartingCount + 15)
-        ];
+    [
+        new DynamicVar("Count", StartingCount),
+        new DynamicVar("StarAmount", StartingCount + 15)
+    ];
 
     public override RelicAssetProfile AssetProfile => new(
         IconPath: $"{Entry.ResPath}/images/relics/{GetType().Name}.png",

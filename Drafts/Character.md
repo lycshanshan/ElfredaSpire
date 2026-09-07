@@ -41,11 +41,7 @@
 | 星与花 | StarAndFlower | 初始 | 包含一个[Count]。战斗开始时，获得[Count]层[星]。每场战斗[星]的层数第一次达到[Count]*2时，升级。 | …… |
 | 星云与花海 | StarCloudAndFlowerSea | 先古 | 包含一个[Count]。战斗开始时，获得[Count]+15层[星]，对所有敌人施加[Count]层[花]。战斗中，每次获得[闪耀]或生成[绽放]，升级。 | …… |
 | 花神之露 | FlowerGodDew | 普通 | 战斗开始时，对随机1名敌人施加3层[花]。 | …… |
-| 星尘沙漏 | StardustHourglass | 普通 | 每当你消耗[星]时，获得3点格挡。 | …… |
-| 绽放之心 | BloomingHeart | 罕见 | 每当你对一个敌人施加[绽放]时，获得10点格挡。 | …… |
-| 贤者的权杖 | SageScepter | 罕见 | 每当你在一回合内消耗超过6层[星]，对所有敌人造成12点伤害。 | …… |
 | 楔之刃 | WedgeBlade | 稀有 | 每当你施加[花之楔]时，额外施加1层。 | …… |
-| 星之引力 | StarGravity | 稀有 | 每当你获得[星]时，额外获得1层。 | …… |
 
 ---
 
@@ -54,7 +50,7 @@
 | 药水 | ID | 效果 |
 |---|---|---|
 | 星云药水 | NebulaPotion | 获得5层[星]。 |
-| 花之露 | FlowerDew | 施加5层[花]。 |
+| 花之露 | FlowerDewPotion | 给予5层[花]。 |
 
 ---
 
@@ -92,7 +88,7 @@
 - 8~10层：失去2点力量，每次攻击时获得1层[花]。
 - 11~20层：失去3点力量，每次攻击时获得1层[花]。
 - 21~30层：失去3点力量，每次攻击时获得2层[花]。
-- 达到20层时，立即移除本效果，并获得3层[绽放]。
+- 达到30层时，立即移除本效果，并获得3层[绽放]。
 - 回合结束时，减少一层。
 
 
@@ -100,7 +96,7 @@
 
 - 星：造成的伤害增加[blue]{Amount}%[/blue]。\n[blue]5~7[/blue]层：获得[blue]1[/blue]层[gold]敏捷[/gold]。\n[blue]8~10[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]。\n[blue]11~17[/blue]层：获得[blue]1[/blue]层[gold]力量[/gold]，[blue]2[/blue]层[gold]敏捷[/gold]，受到的伤害减少[blue]10%[/blue]。\n[blue]18~25[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]20%[/blue]。\n[blue]26~50[/blue]层：获得[blue]2[/blue]层[gold]力量[/gold]和[gold]敏捷[/gold]，受到的伤害减少[blue]25%[/blue]，每回合额外获得{Energy:energyIcons()}。\n达到[blue]50[/blue]层时，立即移除本效果，并获得[gold]闪耀[/gold]。
 
-- 花：造成的伤害减少[blue]{DamageReduction}%[/blue]。\n[blue]1~5[/blue]层：失去[blue]1[/blue]点[gold]力量[/gold]。\n[blue]6~7[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]。\n[blue]8~10[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]11~20[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]21~30[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]2[/blue]层[gold]花[/gold]。\n达到[blue]20[/blue]层时，立即移除本效果，并获得[blue]3[/blue]层[gold]绽放[/gold]。\n回合结束时，减少[blue]1[/blue]层。
+- 花：造成的伤害减少[blue]{DamageReduction}%[/blue]。\n[blue]1~5[/blue]层：失去[blue]1[/blue]点[gold]力量[/gold]。\n[blue]6~7[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]。\n[blue]8~10[/blue]层：失去[blue]2[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]11~20[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]1[/blue]层[gold]花[/gold]。\n[blue]21~30[/blue]层：失去[blue]3[/blue]点[gold]力量[/gold]，每次攻击时获得[blue]2[/blue]层[gold]花[/gold]。\n达到[blue]30[/blue]层时，立即移除本效果，并获得[blue]3[/blue]层[gold]绽放[/gold]。\n回合结束时，减少[blue]1[/blue]层。
 
 - 花之楔：受到的伤害+[blue]{Amount}[/blue]。\n自身的回合结束时，受到[blue]{Amount}[/blue]点伤害，并将层数减少为原先的[blue]2/3[/blue]。
 

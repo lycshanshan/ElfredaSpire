@@ -40,8 +40,9 @@ public class SimulatedOffering : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
+        if (cardPlay.Target is null) return;
         await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<IntangiblePower>(choiceContext, cardPlay.Target!, DynamicVars["IntangiblePower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<IntangiblePower>(choiceContext, cardPlay.Target, DynamicVars["IntangiblePower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
