@@ -1,5 +1,7 @@
+using ElfredaSpire.Characters.Elfreda.Cards;
 using Godot;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Characters;
@@ -16,11 +18,11 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     private const string ImageRoot = $"{Entry.ResPath}/images/characters/{CharacterName}";
 
     // 角色名称颜色
-    public override Color NameColor => new(0.5f, 0.5f, 1f);
+    public override Color NameColor => new("#2258AA");
     // 能量图标轮廓颜色
-    public override Color EnergyLabelOutlineColor => new(0.5f, 0.5f, 1f);
+    public override Color EnergyLabelOutlineColor => new("#59C4E8");
     // 地图绘制颜色
-    public override Color MapDrawingColor => new(0.5f, 0.5f, 1f);
+    public override Color MapDrawingColor => new("#2258AA");
 
     // 人物性别（男女中立）
     public override CharacterGender Gender => CharacterGender.Feminine;
@@ -55,7 +57,7 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
                 // 人物选择图标-锁定状态。
                 CharacterSelectLockedIconPath: $"{ImageRoot}/char_select_Elfreda_locked.png",
                 // 人物选择过渡动画。
-                CharacterSelectTransitionPath: "res://materials/transitions/silent_transition_mat.tres",
+                CharacterSelectTransitionPath: "res://materials/transitions/ironclad_transition_mat.tres",
                 // 地图上的角色标记图标、表情轮盘上的角色头像。
                 MapMarkerPath: $"{ImageRoot}/map_marker_Elfreda.png"
             ),

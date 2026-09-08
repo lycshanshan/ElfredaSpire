@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Patching.Models;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace ElfredaSpire.Characters.Elfreda.Relics;
@@ -76,17 +77,6 @@ public class StarCloudAndFlowerSea : ModRelicTemplate
         await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, enemies, countAtCombatStart, Owner.Creature, null);
     }
 
-    public override Task AfterObtained()
-    {
-        StarAndFlower? starAndFlower = Owner.GetRelic<StarAndFlower>();
-        if (starAndFlower is not null)
-        {
-            Count = starAndFlower.Count;
-        }
-
-        return Task.CompletedTask;
-    }
-
     public override Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -108,5 +98,25 @@ public class StarCloudAndFlowerSea : ModRelicTemplate
         }
 
         return Task.CompletedTask;
+    }
+}
+
+public sealed class PreserveStarAndFlowerCountOnReplacementPatch : IPatchMethod
+{
+    public static string PatchId => "elfreda_preserve_star_and_flower_count_on_replacement";
+    public static string Description => "Preserve StarAndFlower count when Touch of Orobas replaces it";
+    public static bool IsCritical => false;
+
+    public static ModPatchTarget[] GetTargets() =>
+    [
+        new(typeof(RelicCmd), nameof(RelicCmd.Replace), [typeof(RelicModel), typeof(RelicModel)])
+    ];
+
+    public static void Prefix(RelicModel original, RelicModel replace)
+    {
+        if (original is StarAndFlower starAndFlower && replace is StarCloudAndFlowerSea starCloudAndFlowerSea)
+        {
+            starCloudAndFlowerSea.Count = starAndFlower.Count;
+        }
     }
 }

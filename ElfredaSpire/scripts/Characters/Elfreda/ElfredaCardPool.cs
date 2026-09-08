@@ -7,7 +7,7 @@ namespace ElfredaSpire.Characters.Elfreda;
 public class ElfredaCardPool : TypeListCardPoolModel
 {
     private const string CharacterName = "Elfreda";
-    private const string ImageRoot = $"{Entry.ResPath}/images/characters/{CharacterName}";
+    private const string ImageRoot = $"{Entry.ResPath}/images/cards/{CharacterName}";
 
     // 卡池的ID。必须唯一防撞车。
     public override string Title => "ElfredaCardPool";
@@ -19,12 +19,12 @@ public class ElfredaCardPool : TypeListCardPoolModel
     public override string? BigEnergyIconPath => $"{ImageRoot}/energy_Elfreda_big.png";
 
     // 卡池的主题色。
-    public override Color DeckEntryCardColor => new(0.5f, 0.5f, 1f);
+    public override Color DeckEntryCardColor => new("#2258AA");
     // 能量表盘文字轮廓颜色
-    public override Color EnergyOutlineColor => new(0.5f, 0.5f, 1f);
+    public override Color EnergyOutlineColor => new("#59C4E8");
 
     // 根据你使用的卡框决定使用哪个Material
-    private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateReplaceHueShaderMaterial(0.5f, 0.5f, 1f); // 如果你使用原版卡框，使用这个直接替换色调。
+    private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateReplaceHueShaderMaterial(0.133f, 0.345f, 0.667f); // 如果你使用原版卡框，使用这个直接替换色调。
     // private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateRgbShaderMaterial(0.5f, 0.5f, 1f); // 使用原版卡框替换色调。除非你的版本没有CreateReplaceHueShaderMaterial函数，否则应使用上面那种
     // private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateUnmodulatedHsvShaderMaterial(); // 如果你是自定义卡框，使用这个
     public override Material? PoolFrameMaterial => _poolFrameMaterial;

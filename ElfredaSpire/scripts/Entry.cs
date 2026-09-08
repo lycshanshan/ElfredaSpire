@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop;
+using STS2RitsuLib.Patching.Core;
 using ElfredaSpire.Characters.Elfreda.Relics;
 using ElfredaSpire.Characters.Elfreda.Cards;
 
@@ -30,6 +31,10 @@ public class Entry
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         RitsuLibFramework.RegisterTouchOfOrobasRefinementMapping<StarAndFlower, StarCloudAndFlowerSea>();
         RitsuLibFramework.RegisterArchaicToothTranscendenceMapping<Bloom, FlowerSeaArrival>();
+
+        var relicPatcher = RitsuLibFramework.CreatePatcher(ModId, "relic-patches");
+        relicPatcher.RegisterPatch<PreserveStarAndFlowerCountOnReplacementPatch>();
+        relicPatcher.PatchAll();
 
         // ModContentRegistry.For(ModId)
         //     .RegisterCardLibraryCompendiumSharedPoolFilter<GeneralCardPool>(
