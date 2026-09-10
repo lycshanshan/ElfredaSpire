@@ -33,8 +33,8 @@ public class FlowerStorm : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target is null) return;
-        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (CombatState is null) return;
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, CombatState.HittableEnemies.ToList(), DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

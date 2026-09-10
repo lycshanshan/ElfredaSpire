@@ -1,4 +1,4 @@
-// | 花海降临 | FlowerSeaArrival | 技能 | 1 | 对所有敌人施加5/8层[花]。抽2/3张牌。 |
+// | 花海降临 | FlowerSeaArrival | 技能 | 0 | 对所有敌人施加5/8层[花]。抽2/3张牌。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +14,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class FlowerSeaArrival : ModCardTemplate
 {
-    public FlowerSeaArrival() : base(1, CardType.Skill, CardRarity.Ancient, TargetType.AllEnemies, true)
+    public FlowerSeaArrival() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.AllEnemies, true)
     {
     }
 
@@ -33,8 +33,8 @@ public class FlowerSeaArrival : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target is null) return;
-        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (CombatState is null) return;
+        await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, CombatState.HittableEnemies.ToList(), DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
     }
 

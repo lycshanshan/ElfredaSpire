@@ -43,11 +43,12 @@ public class StarlightRadiance : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target is null) return;
+        if (CombatState is null) return;
         if (!Owner.Creature.HasPower<GlitterPower>())
             await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, DynamicVars["VulnerablePower"].IntValue, Owner.Creature, cardPlay.Card);
-        await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target, DynamicVars["WeakPower"].IntValue, Owner.Creature, cardPlay.Card);
+        var targets = CombatState.HittableEnemies.ToList();
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, targets, DynamicVars["VulnerablePower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<WeakPower>(choiceContext, targets, DynamicVars["WeakPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

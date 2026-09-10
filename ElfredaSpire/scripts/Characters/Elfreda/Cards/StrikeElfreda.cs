@@ -9,7 +9,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 4)]
+[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 3)]
 public class StrikeElfreda : ModCardTemplate
 {
     public StrikeElfreda() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)

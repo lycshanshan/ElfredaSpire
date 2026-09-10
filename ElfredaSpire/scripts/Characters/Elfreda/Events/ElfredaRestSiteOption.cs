@@ -9,7 +9,7 @@ namespace ElfredaSpire.Characters.Events;
 public class ElfredaRestSiteOption(Player owner) : ModRestSiteOptionTemplate(owner)
 {
     private const int CountIncrease = 3;
-    private const string IconPath = $"{Entry.ResPath}/images/characters/Elfreda/restsite_icon_Elfreda.png";
+    private const string IconPath = $"{Entry.ResPath}/images/characters/Elfreda/restsite_option_Elfreda.png";
 
     public override string OptionId => "ELFREDA_STAR_AND_FLOWER";
 

@@ -33,8 +33,8 @@ public class WedgeScatter : ModCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Target is null) return;
-        await PowerCmd.Apply<FlowerWedgePower>(choiceContext, cardPlay.Target, DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (CombatState is null) return;
+        await PowerCmd.Apply<FlowerWedgePower>(choiceContext, CombatState.HittableEnemies.ToList(), DynamicVars["FlowerWedgePower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
