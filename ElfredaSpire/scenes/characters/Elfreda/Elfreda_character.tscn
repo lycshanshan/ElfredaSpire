@@ -1,21 +1,25 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://blyg7ltuoe5fc"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_hxav6"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://oiivgt1bkrcj" path="res://ElfredaSpire/animations/characters/Elfreda/Elfreda_skel_data.tres" id="1_r572w"]
 
-[node name="ExampleCharacter" type="Node2D"]
+[node name="ElfredaCharacter" type="Node2D"]
 
-[node name="Visuals" type="Sprite2D" parent="."]
+[node name="Visuals" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_r572w")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
 unique_name_in_owner = true
-position = Vector2(0, -73)
-texture = ExtResource("1_hxav6")
+scale = Vector2(0.75, 0.75)
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -70.0
+offset_left = -105.0
 offset_top = -140.0
-offset_right = 70.0
+offset_right = 105.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true

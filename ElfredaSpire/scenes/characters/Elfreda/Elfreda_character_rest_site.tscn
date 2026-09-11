@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://bgn6w2vc8gbo"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_74iws"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://oiivgt1bkrcj" path="res://ElfredaSpire/animations/characters/Elfreda/Elfreda_skel_data.tres" id="1_rjc7r"]
 
 [node name="ExampleCharacterRestSite" type="Node2D"]
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_74iws")
-
-[node name="Sprite2" type="Sprite2D" parent="."]
-position = Vector2(75, -58)
-texture = ExtResource("1_74iws")
+[node name="Sprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_rjc7r")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(0, 91)
+scale = Vector2(0.9, 0.9)
 
 [node name="ControlRoot" type="Control" parent="."]
 layout_mode = 3

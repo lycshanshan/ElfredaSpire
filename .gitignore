@@ -3,6 +3,9 @@
 /android/
 Local.props
 export_presets.cfg
+bin/
+windows/
+spine_godot_extension.gdextension
 
 *.uid
 *.import

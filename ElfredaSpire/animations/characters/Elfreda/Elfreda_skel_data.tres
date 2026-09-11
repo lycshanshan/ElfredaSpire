@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://oiivgt1bkrcj"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://bmtrhkbrpddfo" path="res://ElfredaSpire/animations/characters/Elfreda/Elfreda.atlas" id="1_3n2n3"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://b3gxuv5cv822c" path="res://ElfredaSpire/animations/characters/Elfreda/Elfreda.skel" id="2_htxic"]
+
+[resource]
+atlas_res = ExtResource("1_3n2n3")
+skeleton_file_res = ExtResource("2_htxic")

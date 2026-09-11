@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://di0eoytju52e4"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_diepv"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://oiivgt1bkrcj" path="res://ElfredaSpire/animations/characters/Elfreda/Elfreda_skel_data.tres" id="1_ok6d6"]
 
-[node name="IroncladMerchant" type="Node2D"]
+[node name="ElfredaMerchant" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-texture = ExtResource("1_diepv")
+[node name="Sprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_ok6d6")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(0, 94.00001)
+scale = Vector2(0.9, 0.9)
