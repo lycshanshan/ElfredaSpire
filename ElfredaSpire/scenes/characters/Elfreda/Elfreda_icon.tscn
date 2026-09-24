@@ -1,14 +1,14 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://bf1y255m6enx3"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_by5rm"]
+[ext_resource type="Texture2D" uid="uid://byhf78wy0k3pm" path="res://ElfredaSpire/images/characters/Elfreda/character_icon_Elfreda.png" id="1_u1s0b"]
 
-[node name="ExampleIcon" type="TextureRect"]
+[node name="ElfredaIcon" type="TextureRect"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_by5rm")
+texture = ExtResource("1_u1s0b")
 expand_mode = 1
 stretch_mode = 5

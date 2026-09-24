@@ -1,4 +1,4 @@
-// | 星之壁 | StarWall | 技能 | 1 | 获得4点格挡。每有1层[星]，额外获得2/3点格挡。 |
+// | 星之壁 | StarWall | 技能 | 1 | 获得6点格挡。每有1层[星]，额外获得2/3点格挡。（最多计入5层） |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -34,9 +34,9 @@ public class StarWall : ModCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("ExtraBlock", 2),
-        ModCardVars.ComputedBlock("BlockValue", 4, card =>
+        ModCardVars.ComputedBlock("BlockValue", 6, card =>
             card!.DynamicVars["BlockValue"].BaseValue
-            + (card.Owner.Creature?.GetPowerAmount<StarElfredaPower>() ?? 0)
+            + Math.Min(5, card.Owner.Creature?.GetPowerAmount<StarElfredaPower>() ?? 0)
             * card.DynamicVars["ExtraBlock"].IntValue),
     ];
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://cxve3v0uhivs6"]
 
-[ext_resource type="Texture2D" path="res://icon.svg" id="1_85qf2"]
+[ext_resource type="Texture2D" uid="uid://daa3bn5jjtsbb" path="res://ElfredaSpire/images/energy/Elfreda/1.png" id="1_ckj6x"]
+[ext_resource type="Texture2D" uid="uid://cimhvavo7tq0t" path="res://ElfredaSpire/images/energy/Elfreda/3.png" id="2_6o5j0"]
+[ext_resource type="Texture2D" uid="uid://cxufec813ghuu" path="res://ElfredaSpire/images/energy/Elfreda/2.png" id="3_aidy2"]
 
-[node name="ExampleEnergyCounter" type="Control"]
+[node name="ElfredaEnergyCounter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0
@@ -23,12 +25,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RotationLayers" type="Control" parent="Layers"]
-unique_name_in_owner = true
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
+[node name="Layer2" type="TextureRect" parent="Layers"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6o5j0")
+expand_mode = 1
 
 [node name="Layer1" type="TextureRect" parent="Layers"]
 layout_mode = 1
@@ -37,7 +42,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_85qf2")
+texture = ExtResource("3_aidy2")
+expand_mode = 1
+
+[node name="RotationLayers" type="Control" parent="Layers"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(64, 64)
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Layers/RotationLayers"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("1_ckj6x")
 expand_mode = 1
 
 [node name="EnergyVfxFront" type="Node2D" parent="."]

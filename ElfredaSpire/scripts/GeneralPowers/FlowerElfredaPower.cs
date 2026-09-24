@@ -1,10 +1,9 @@
 /*
-- 造成的伤害减少[层数+5]%。
+- 造成的伤害减少[层数+10]%。
 - 1~5层：失去1点力量。
 - 6~7层：失去2点力量。
 - 8~10层：失去2点力量，每次攻击时获得1层[花]。
-- 11~20层：失去3点力量，每次攻击时获得1层[花]。
-- 21~30层：失去3点力量，每次攻击时获得2层[花]。
+- 11~20层：失去3点力量，每次攻击时获得2层[花]。
 - 达到20层时，立即移除本效果，并获得3层[绽放]。
 - 回合结束时，减少一层。
 */
@@ -31,7 +30,7 @@ public class FlowerElfredaPower : ModPowerTemplate
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<BloomPower>()];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageReduction", 5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DamageReduction", 10)];
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target,
@@ -45,7 +44,7 @@ public class FlowerElfredaPower : ModPowerTemplate
             return 1m;
         }
 
-        return 1m - (Amount + 5) / 100m;
+        return Math.Max(0m, 1m - (Amount + 10) / 100m);
     }
 
     public override async Task AfterPowerAmountChanged(
@@ -59,7 +58,7 @@ public class FlowerElfredaPower : ModPowerTemplate
         {
             return;
         }
-        DynamicVars["DamageReduction"].BaseValue = Amount + 5;
+        DynamicVars["DamageReduction"].BaseValue = Amount + 10;
 
         int previousAmount = Amount - (int)amount;
         int previousStrengthLoss = GetStrengthLoss(previousAmount);
@@ -71,7 +70,7 @@ public class FlowerElfredaPower : ModPowerTemplate
             await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, strengthChange, null, null);
         }
 
-        if (Amount >= 30)
+        if (Amount >= 20)
         {
             Flash();
             await PowerCmd.Remove(this);
@@ -90,7 +89,7 @@ public class FlowerElfredaPower : ModPowerTemplate
             return;
         }
 
-        int flowerGained = Amount >= 21 ? 2 : 1;
+        int flowerGained = Amount >= 11 ? 2 : 1;
         Flash();
         await PowerCmd.ModifyAmount(choiceContext, this, flowerGained, Owner, null);
     }

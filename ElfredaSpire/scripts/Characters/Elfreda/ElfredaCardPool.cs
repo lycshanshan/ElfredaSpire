@@ -21,7 +21,7 @@ public class ElfredaCardPool : TypeListCardPoolModel
     // 卡池的主题色。
     public override Color DeckEntryCardColor => new("#2258AA");
     // 能量表盘文字轮廓颜色
-    public override Color EnergyOutlineColor => new("#59C4E8");
+    public override Color EnergyOutlineColor => new("#2258AA");
 
     // 根据你使用的卡框决定使用哪个Material
     private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateReplaceHueShaderMaterial(0.133f, 0.345f, 0.667f); // 如果你使用原版卡框，使用这个直接替换色调。

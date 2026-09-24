@@ -38,9 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ElfredaSpire\scripts\Characters\Crusader\Potions\" />
-    <Folder Include="ElfredaSpire\scripts\Characters\HighwayMan\Events\" />
-    <Folder Include="ElfredaSpire\scripts\Characters\HighwayMan\Potions\" />
+    <Folder Include="ElfredaSpire\scripts\Characters\Elfreda\Potions\" />
+    <Folder Include="ElfredaSpire\scripts\Characters\Elfreda\Events\" />
+    <Folder Include="ElfredaSpire\scripts\Characters\Elfreda\Relics\" />
   </ItemGroup>
 
   <!-- 自动复制dll和json -->
