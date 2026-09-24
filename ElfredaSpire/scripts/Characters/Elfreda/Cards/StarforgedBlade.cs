@@ -1,4 +1,4 @@
-// | 星铸刀刃 | StarforgedBlade | 攻击 | 1 | 造成7/10点伤害。抽1/2张牌。 |
+// | 星铸刀刃 | StarforgedBlade | 攻击 | 1 | 造成9/12点伤害。抽1/2张牌。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +26,7 @@ public class StarforgedBlade : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7, ValueProp.Move), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move), new CardsVar(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

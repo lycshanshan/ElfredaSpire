@@ -1,4 +1,4 @@
-// | 星光屏障 | StarlightBarrier | 技能 | 1 | 获得7/9点格挡。消耗至多2层[星]，每消耗1层，获得3/5点格挡。 |
+// | 星光屏障 | StarlightBarrier | 技能 | 1 | 获得8/10点格挡。消耗至多2层[星]，每消耗1层，获得3/5点格挡。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class StarlightBarrier : ModCardTemplate
 {
-    public StarlightBarrier() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self, true)
+    public StarlightBarrier() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self, true)
     {
     }
 
@@ -32,9 +32,9 @@ public class StarlightBarrier : ModCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7, BlockProps.card),
+        new BlockVar(8, BlockProps.card),
         new IntVar("MaxStarConsume", 2),
-        new BlockVar("ExtraBlock", 2, BlockProps.card)
+        new BlockVar("ExtraBlock", 3, BlockProps.card)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -62,7 +62,7 @@ public class StarlightBarrier : ModCardTemplate
 
         for (int i = 0; i < amountConsumed; i++)
         {
-            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+            await CreatureCmd.GainBlock(Owner.Creature, (BlockVar)DynamicVars["ExtraBlock"], cardPlay);
         }
     }
 

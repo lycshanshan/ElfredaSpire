@@ -1,4 +1,4 @@
-// | 播种 | SeedSowing | 攻击 | 1 | 造成8点伤害。施加2/3层[花]。 |
+// | 播种 | SeedSowing | 攻击 | 1 | 造成8点伤害。施加3/4层[花]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,7 +30,7 @@ public class SeedSowing : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new PowerVar<FlowerElfredaPower>(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new PowerVar<FlowerElfredaPower>(3)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

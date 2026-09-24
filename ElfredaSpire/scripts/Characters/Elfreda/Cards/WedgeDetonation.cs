@@ -1,4 +1,4 @@
-// | 标记引爆-楔 | WedgeDetonation | 攻击 | 2 | 目标每有2/1层[花之楔]，造成8/6点伤害一次。移除目标的所有[花之楔]。（造成伤害{HitCount:diff()}次。） |
+// | 标记引爆-楔 | WedgeDetonation | 攻击 | 2 | 目标每有2/1层[花之楔]，造成8/6点伤害一次。移除目标的一半[花之楔]。（造成伤害{HitCount:diff()}次。） |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -40,7 +40,8 @@ public class WedgeDetonation : ModCardTemplate
         
         FlowerWedgePower? flowerWedge = cardPlay.Target.GetPower<FlowerWedgePower>();
         if (flowerWedge is null) { return; }
-        await PowerCmd.Remove(flowerWedge);
+        int amountToRemove = (flowerWedge.Amount + 1) / 2;
+        await PowerCmd.ModifyAmount(choiceContext, flowerWedge, -amountToRemove, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()

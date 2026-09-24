@@ -1,4 +1,4 @@
-// | 星光辐射 | StarlightRadiance | 技能 | 0 | 消耗2层[星]。对全体敌方单位施加2/3层虚弱和易伤。 |
+// | 星光辐射 | StarlightRadiance | 技能 | 0 | 消耗2层[星]。对全体敌方单位施加3/4层虚弱和易伤。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,6 +28,8 @@ public class StarlightRadiance : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromPower<StarElfredaPower>(),
@@ -35,7 +37,7 @@ public class StarlightRadiance : ModCardTemplate
         HoverTipFactory.FromPower<WeakPower>()
     ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(2), new PowerVar<VulnerablePower>(2), new PowerVar<WeakPower>(2)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(2), new PowerVar<VulnerablePower>(3), new PowerVar<WeakPower>(3)];
 
     protected override bool IsPlayable =>
         Owner.Creature.GetPower<StarElfredaPower>()?.Amount >= DynamicVars["StarElfredaPower"].IntValue

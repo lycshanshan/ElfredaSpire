@@ -1,11 +1,9 @@
-// | 花海之拥 | FlowerSeaEmbrace | 技能 | 2 | 获得24/30点格挡。对自身施加6/4层[花]。 |
+// | 花海之拥 | FlowerSeaEmbrace | 技能 | 2 | 获得28/35点格挡。对自身施加6/4层[花]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using MegaCrit.Sts2.Core.Commands;
@@ -32,7 +30,7 @@ public class FlowerSeaEmbrace : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(24, BlockProps.card), new PowerVar<FlowerElfredaPower>(6)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(28, BlockProps.card), new PowerVar<FlowerElfredaPower>(6)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -42,7 +40,7 @@ public class FlowerSeaEmbrace : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Block.UpgradeValueBy(6);
+        DynamicVars.Block.UpgradeValueBy(7);
         DynamicVars["FlowerElfredaPower"].UpgradeValueBy(-2);
     }
 }

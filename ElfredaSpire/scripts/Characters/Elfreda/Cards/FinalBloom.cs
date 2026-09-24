@@ -1,4 +1,4 @@
-// | 终末之花 | FinalBloom | 攻击 | 3 | 造成20/26点伤害。施加10/14层[花]。 |
+// | 终末之花 | FinalBloom | 攻击 | 3 | 施加9/12层[花]。若目标带有[绽放]，对其造成50/65点伤害。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,20 +28,27 @@ public class FinalBloom : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+    [
+        HoverTipFactory.FromPower<FlowerElfredaPower>(),
+        HoverTipFactory.FromPower<BloomPower>()
+    ];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(20, ValueProp.Move), new PowerVar<FlowerElfredaPower>(10)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerElfredaPower>(9), new DamageVar(50, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target is null) return;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
         await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        if (cardPlay.Target.HasPower<BloomPower>())
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(6);
-        DynamicVars["FlowerElfredaPower"].UpgradeValueBy(4);
+        DynamicVars["FlowerElfredaPower"].UpgradeValueBy(3);
+        DynamicVars.Damage.UpgradeValueBy(15);
     }
 }

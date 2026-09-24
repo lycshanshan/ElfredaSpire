@@ -1,4 +1,4 @@
-// | 织花者 | FlowerWeaver | 攻击 | 2 | 造成6/8点伤害两次。若敌人的意图为攻击，施加4/6层[花]。 |
+// | 织花者 | FlowerWeaver | 攻击 | 2 | 造成9/11点伤害两次。若敌人的意图为攻击，施加4/6层[花]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -21,7 +21,7 @@ public class FlowerWeaver : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new PowerVar<FlowerElfredaPower>(4)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9, ValueProp.Move), new PowerVar<FlowerElfredaPower>(4)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

@@ -1,4 +1,4 @@
-// | 花海之怒 | FlowerSeaFury | 攻击 | 3 | 保留。对所有敌人造成12/16点伤害。移除所有敌人身上的所有[花]，每移除1层，对随机敌人造成3/4点伤害。消耗。 |
+// | 花海之怒 | FlowerSeaFury | 攻击 | 2 | 保留。对所有敌人造成12/16点伤害。移除所有敌人身上的所有[花]，每移除1层，对随机敌人造成3/4点伤害。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class FlowerSeaFury : ModCardTemplate
 {
-    public FlowerSeaFury() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies, true)
+    public FlowerSeaFury() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies, true)
     {
     }
 

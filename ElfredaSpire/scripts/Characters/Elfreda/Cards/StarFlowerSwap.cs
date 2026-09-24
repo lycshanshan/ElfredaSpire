@@ -1,4 +1,4 @@
-// | 星花转换 | StarFlowerSwap | 技能 | 2 | 将自身的[星]层数与目标的[花]层数互换。消耗。/- |
+// | 星花转换 | StarFlowerSwap | 技能 | 1 | 将自身的[星]层数与目标的[花]层数互换。消耗。/- |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -13,7 +13,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class StarFlowerSwap : ModCardTemplate
 {
-    public StarFlowerSwap() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    public StarFlowerSwap() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
     }
 

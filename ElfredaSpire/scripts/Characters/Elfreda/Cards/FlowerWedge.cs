@@ -1,4 +1,4 @@
-// | 花之楔 | FlowerWedge | 攻击 | 2 | 造成6点伤害2/3次。施加1/2层[花之楔]。 |
+// | 花之楔 | FlowerWedge | 攻击 | 2 | 造成8点伤害2/3次。施加1/2层[花之楔]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class FlowerWedge : ModCardTemplate
 {
-    public FlowerWedge() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    public FlowerWedge() : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy, true)
     {
     }
 
@@ -30,7 +30,7 @@ public class FlowerWedge : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6, ValueProp.Move), new IntVar("HitCount", 2), new PowerVar<FlowerWedgePower>(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8, ValueProp.Move), new IntVar("HitCount", 2), new PowerVar<FlowerWedgePower>(1)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

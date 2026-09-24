@@ -1,4 +1,4 @@
-// | 花海绽放 | FlowerSeaBloom | 技能 | 2 | 对所有带有[花]的敌人施加2层易伤。若其带有不低于12/10层[花]，则移除其所有[花]并对其施加2层[绽放]。消耗。 |
+// | 花海绽放 | FlowerSeaBloom | 技能 | 1 | 对所有带有[花]的敌人施加2层易伤。若其带有不低于12/10层[花]，则移除其所有[花]并对其施加2层[绽放]。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class FlowerSeaBloom : ModCardTemplate
 {
-    public FlowerSeaBloom() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, true)
+    public FlowerSeaBloom() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, true)
     {
     }
 

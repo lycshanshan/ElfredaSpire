@@ -5,7 +5,7 @@
 - 11~17层：获得1层力量，2层敏捷，受到的伤害减少10%。
 - 18~25层：获得2层力量和敏捷，受到的伤害减少20%。
 - 26~50层：获得2层力量和敏捷，受到的伤害减少25%，每回合额外获得1点能量。
-- 达到50层时，立即移除本效果，并获得[闪耀]。
+- 达到50层时，获得[闪耀]。
 */
 
 using MegaCrit.Sts2.Core.Commands;
@@ -74,12 +74,17 @@ public class StarElfredaPower : ModPowerTemplate
         if (previousAmount < 50 && Amount >= 50)
         {
             Flash();
-            await PowerCmd.Remove(this);
+            // await PowerCmd.Remove(this);
+            if(Amount > 50)
+            {
+                await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, Amount - 50, Owner, null);
+            }
             // await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -GetStrengthBonus(Amount), Owner, null);
             // await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, -GetDexterityBonus(Amount), Owner, null);
             await PowerCmd.Apply<GlitterPower>(choiceContext, Owner, 1, Owner, null);
             return;
         }
+        if (Amount >= 50) { return; }
 
         int strengthGained = GetStrengthBonus(Amount) - GetStrengthBonus(previousAmount);
         int dexterityGained = GetDexterityBonus(Amount) - GetDexterityBonus(previousAmount);

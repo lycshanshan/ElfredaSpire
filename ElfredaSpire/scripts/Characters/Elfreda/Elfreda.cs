@@ -20,7 +20,7 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     // 角色名称颜色
     public override Color NameColor => new("#2258AA");
     // 能量图标轮廓颜色
-    public override Color EnergyLabelOutlineColor => new("#59C4E8");
+    public override Color EnergyLabelOutlineColor => new("#2258AA");
     // 地图绘制颜色
     public override Color MapDrawingColor => new("#2258AA");
 

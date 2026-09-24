@@ -1,4 +1,4 @@
-// | 楔之导标 | WedgeBeacon | 技能 | 1 | 施加2/3层[花之楔]。抽1/2张牌。 |
+// | 楔之导标 | WedgeBeacon | 技能 | 1 | 施加2/3层[花之楔]。抽2/3张牌。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,7 +29,7 @@ public class WedgeBeacon : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerWedgePower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(2), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<FlowerWedgePower>(2), new CardsVar(2)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
