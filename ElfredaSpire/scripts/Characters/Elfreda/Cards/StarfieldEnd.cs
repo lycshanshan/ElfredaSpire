@@ -1,4 +1,4 @@
-// | 星空的尽头 | StarfieldEnd | 攻击 | 5 | -/保留。造成 35/45 点伤害。若你带有[闪耀]，此牌耗能为0。 |
+// | 星空的尽头 | StarfieldEnd | 攻击 | 5 | -/保留。造成 40/50 点伤害。若你带有[闪耀]，此牌耗能为0。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -32,7 +32,7 @@ public class StarfieldEnd : ModCardTemplate, ICardEnergyCostContributor
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<GlitterPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(35, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(40, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

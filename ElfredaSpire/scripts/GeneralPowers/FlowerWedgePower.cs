@@ -1,4 +1,4 @@
-// 特殊标记。受到的伤害+[层数]。自身的回合结束时，受到[层数]点伤害，并将层数减少为原先的2/3（向上取整）。
+// 特殊标记。受到的伤害+[层数]。自身的回合开始时，受到[层数]点伤害，并将层数减少为原先的2/3（向上取整）。
 
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -33,10 +33,11 @@ public class FlowerWedgePower : ModPowerTemplate
         return Amount;
     }
 
-    public override async Task AfterSideTurnEnd(
+    public override async Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
-        IEnumerable<Creature> participants)
+        IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
         if (!participants.Contains(Owner))
         {

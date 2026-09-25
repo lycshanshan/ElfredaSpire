@@ -1,4 +1,4 @@
-// | 预借星辉 | BorrowedStarlight | 技能 | 1 | 获得8/10层[星]。下个回合开始时，失去3/2层[星]。 |
+// | 预借星辉 | BorrowedStarlight | 技能 | 1 | 获得12/15层[星]。下个回合开始时，失去3/2层[星]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -29,7 +29,7 @@ public class BorrowedStarlight : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(8), new PowerVar<NextTurnStarPower>(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StarElfredaPower>(12), new PowerVar<NextTurnStarPower>(3)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -39,7 +39,7 @@ public class BorrowedStarlight : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["StarElfredaPower"].UpgradeValueBy(2);
+        DynamicVars["StarElfredaPower"].UpgradeValueBy(3);
         DynamicVars["NextTurnStarPower"].UpgradeValueBy(-1);
     }
 }

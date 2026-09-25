@@ -77,7 +77,7 @@ public class StarElfredaPower : ModPowerTemplate
             // await PowerCmd.Remove(this);
             if(Amount > 50)
             {
-                await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, Amount - 50, Owner, null);
+                await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, 50 - Amount, null, null, true);
             }
             // await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -GetStrengthBonus(Amount), Owner, null);
             // await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, -GetDexterityBonus(Amount), Owner, null);

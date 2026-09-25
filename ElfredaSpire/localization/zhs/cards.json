@@ -42,7 +42,7 @@
   "ELFREDA_SPIRE_CARD_STAR_GUIDANCE.title": "星之指引",
   "ELFREDA_SPIRE_CARD_STAR_GUIDANCE.description": "抽{Cards:diff()}张牌。\n消耗{StarElfredaPower:diff()}层[gold]星[/gold]，额外抽{ExtraCards:diff()}张牌。",
   "ELFREDA_SPIRE_CARD_STAR_WALL.title": "星之壁",
-  "ELFREDA_SPIRE_CARD_STAR_WALL.description": "获得{BlockValue:diff()}点[gold]格挡[/gold]。\n每有1层[gold]星[/gold]，额外获得{ExtraBlock:diff()}点[gold]格挡[/gold]。（最多计入5层）",
+  "ELFREDA_SPIRE_CARD_STAR_WALL.description": "获得{BlockValue:diff()}点[gold]格挡[/gold]。\n每有1层[gold]星[/gold]，额外获得{ExtraBlock:diff()}点[gold]格挡[/gold]。",
   "ELFREDA_SPIRE_CARD_VITALITY_DRAIN.title": "生机吸收",
   "ELFREDA_SPIRE_CARD_VITALITY_DRAIN.description": "移除目标的所有[gold]花[/gold]并恢复等量生命。",
   "ELFREDA_SPIRE_CARD_FLOWER_RAIN.title": "花之雨",

@@ -28,7 +28,7 @@ public class FlowerWeaver : ModCardTemplate
         if (cardPlay.Target is null) { return; }
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).WithHitCount(2).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
         if (cardPlay.Target.Monster!.IntendsToAttack)
-            await PowerCmd.Apply<StarElfredaPower>(choiceContext, cardPlay.Target, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+            await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, cardPlay.Target, DynamicVars["FlowerElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
     }
 
     protected override void OnUpgrade()
