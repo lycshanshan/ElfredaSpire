@@ -12,7 +12,7 @@ using ElfredaSpire.GeneralPowers;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
+// [RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
 public class Bloom : ModCardTemplate
 {
     public Bloom() : base(0, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy, true)

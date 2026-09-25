@@ -11,7 +11,7 @@ using ElfredaSpire.GeneralPowers;
 namespace ElfredaSpire.Characters.Elfreda.Cards;
 
 [RegisterCard(typeof(ElfredaCardPool))]
-[RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
+// [RegisterCharacterStarterCard(typeof(ElfredaCharacter), 1)]
 public class Pierce : ModCardTemplate
 {
     public Pierce() : base(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy, true)

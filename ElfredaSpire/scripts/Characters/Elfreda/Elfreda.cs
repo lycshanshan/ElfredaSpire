@@ -1,5 +1,7 @@
 using ElfredaSpire.Characters.Elfreda.Cards;
 using Godot;
+using MegaCrit.Sts2.Core.Animation;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -86,16 +88,16 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
                 // ArmPaperTexturePath: null,
                 // 多人模式剪刀石头布-剪刀。
                 // ArmScissorsTexturePath: null
-            )
+            ),
             // 其余如果有需要自行取消注释使用
             // Spine: null,
             // VisualCues: null, // 帧动画静态图人物使用，查看角色动画一章
             // WorldProceduralVisuals: null,
             // 以下为让遗物根据你的人物展现不同的图像资源，在列表里添加即可
             // VanillaCardVisualOverrides: [],
-            // VanillaRelicVisualOverrides: [
-            //     new (CharacterOwnedVanillaRelicModelId.YummyCookie, new("res://icon.svg")) // 美味饼干覆盖
-            // ],
+            VanillaRelicVisualOverrides: [
+                new (CharacterOwnedVanillaRelicModelId.YummyCookie, new("res://ElfredaSpire/images/characters/Elfreda/map_marker_Elfreda.png")) // 美味饼干覆盖
+            ]
             // VanillaPotionVisualOverrides: []
         ));
 
@@ -113,9 +115,14 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     protected override NCreatureVisuals? TryCreateCreatureVisuals() => RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(AssetProfile.Scenes!.VisualsPath!);
 
     // 初始卡组，或者在卡牌类上用RegisterCharacterStarterCard就不用写这个
-    // protected override IEnumerable<StartingDeckEntry> StartingDeckEntries => [
-    //     new(typeof(TestCard), 5)
-    // ];
+    [Obsolete]
+    protected override IEnumerable<StartingDeckEntry> StartingDeckEntries => [
+        new(typeof(StrikeElfreda), 3),
+        new(typeof(DefendElfreda), 4),
+        new(typeof(Bloom), 1),
+        new(typeof(StarForce), 1),
+        new(typeof(Pierce), 1),
+    ];
 
     // 初始遗物，或者在遗物类上用RegisterCharacterStarterRelic就不用写这个
     // protected override IEnumerable<Type> StartingRelicTypes => [
@@ -130,4 +137,29 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
         "vfx/vfx_bloody_impact",
         "vfx/vfx_rock_shatter"
     ];
+
+    private const float NonIdleAnimationSpeed = 2f;
+
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    {
+        controller.ConnectAnimationStarted(
+            Callable.From<GodotObject, GodotObject, GodotObject>(
+                OnSpineAnimationStarted));
+
+        return base.GenerateAnimator(controller);
+    }
+
+    private static void OnSpineAnimationStarted(
+        GodotObject spineSpriteObject,
+        GodotObject animationStateObject,
+        GodotObject trackEntryObject)
+    {
+        MegaTrackEntry trackEntry = new(trackEntryObject);
+
+        // 保留常态待机动画原本的播放速度。
+        if (trackEntry.GetAnimationName() == AnimState.idleAnim)
+            return;
+
+        trackEntry.SetTimeScale(NonIdleAnimationSpeed);
+    }
 }
