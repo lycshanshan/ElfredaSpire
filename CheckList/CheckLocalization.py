@@ -6,7 +6,7 @@
   角色专属位于 ElfredaSpire/scripts/Characters/{角色}/{Type}s。
 - Power：只位于 ElfredaSpire/scripts/GeneralPowers。
 - 本地化文本在 ElfredaSpire/localization/{语言}/{type}.json，
-  键形如 DARKEST_SPIRE_{TYPE}_{ID}.{field}，ID 由文件名按驼峰转大写蛇形得到。
+  键形如 ELFREDA_SPIRE_{TYPE}_{ID}.{field}，ID 由文件名按驼峰转大写蛇形得到。
 
 每个语言生成一份 `Localization - {语言}.md` 到本目录。
 条目状态：全部字段已写 -> [x]；部分已写 -> [-]；全未写 -> [ ]。
@@ -62,7 +62,7 @@ def load_json(path: Path) -> dict:
 
 def entry_status(stem: str, type_name: str, fields: list[str], data: dict) -> str:
     """单个内容条目的完成状态：[x] / [-] / [ ]。"""
-    prefix = f"DARKEST_SPIRE_{type_name.upper()}_{to_upper_snake(stem)}"
+    prefix = f"ELFREDA_SPIRE_{type_name.upper()}_{to_upper_snake(stem)}"
     written = sum(1 for field in fields if f"{prefix}.{field}" in data)
     if written == len(fields):
         return "[x]"

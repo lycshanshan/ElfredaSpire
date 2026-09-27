@@ -24,7 +24,7 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
     // 能量图标轮廓颜色
     public override Color EnergyLabelOutlineColor => new("#2258AA");
     // 地图绘制颜色
-    public override Color MapDrawingColor => new("#2258AA");
+    public override Color MapDrawingColor => new("#59C4E8");
 
     // 人物性别（男女中立）
     public override CharacterGender Gender => CharacterGender.Feminine;

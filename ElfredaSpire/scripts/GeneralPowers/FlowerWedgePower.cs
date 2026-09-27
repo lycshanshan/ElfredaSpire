@@ -49,7 +49,10 @@ public class FlowerWedgePower : ModPowerTemplate
 
         Flash();
         await CreatureCmd.Damage(choiceContext, Owner, amount, ValueProp.Unpowered, Owner, null);
-        await PowerCmd.ModifyAmount(choiceContext, this, remainingAmount - amount, Owner, null);
+        if (Owner.IsAlive)
+        {
+            await PowerCmd.ModifyAmount(choiceContext, this, remainingAmount - amount, Owner, null);
+        }
     }
 
     // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。

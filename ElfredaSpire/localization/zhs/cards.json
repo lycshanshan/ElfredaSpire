@@ -138,7 +138,7 @@
   "ELFREDA_SPIRE_CARD_STARFIELD_END.title": "星空的尽头",
   "ELFREDA_SPIRE_CARD_STARFIELD_END.description": "造成{Damage:diff()}点伤害。\n若你带有[gold]闪耀[/gold]，此牌耗能为0。",
   "ELFREDA_SPIRE_CARD_BURN_THE_STARS.title": "燃尽群星",
-  "ELFREDA_SPIRE_CARD_BURN_THE_STARS.description": "获得[gold]闪耀[/gold]。\n结束当前回合，并立即获得一个额外回合。\n下回合结束时死亡。",
+  "ELFREDA_SPIRE_CARD_BURN_THE_STARS.description": "获得{StarElfredaPower:diff()}层[gold]星[/gold]。\n结束当前回合，并获得一个额外回合。\n下回合结束时死亡。",
   "ELFREDA_SPIRE_CARD_FLOWER_SEA_BLOOM.title": "花海绽放",
   "ELFREDA_SPIRE_CARD_FLOWER_SEA_BLOOM.description": "给予所有带有[gold]花[/gold]的敌人{VulnerablePower:diff()}层[gold]易伤[/gold]。\n若其带有不低于{FlowerRequired:diff()}层[gold]花[/gold]，则移除其所有[gold]花[/gold]并给予其{BloomPower:diff()}层[gold]绽放[/gold]。",
   "ELFREDA_SPIRE_CARD_STARLIGHT_RADIANCE.title": "星光辐射",

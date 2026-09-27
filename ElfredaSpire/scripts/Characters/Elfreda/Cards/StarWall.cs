@@ -36,7 +36,7 @@ public class StarWall : ModCardTemplate
         new IntVar("ExtraBlock", 2),
         ModCardVars.ComputedBlock("BlockValue", 5, card =>
             card!.DynamicVars["BlockValue"].BaseValue
-            + card.Owner.Creature?.GetPowerAmount<StarElfredaPower>() ?? 0
+            + (card.Owner.Creature?.GetPowerAmount<StarElfredaPower>() ?? 0)
             * card.DynamicVars["ExtraBlock"].IntValue),
     ];
 

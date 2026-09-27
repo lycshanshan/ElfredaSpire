@@ -71,23 +71,16 @@ public class StarElfredaPower : ModPowerTemplate
         }
 
         int previousAmount = Amount - (int)amount;
-        if (previousAmount < 50 && Amount >= 50)
-        {
-            Flash();
-            // await PowerCmd.Remove(this);
-            if(Amount > 50)
-            {
-                await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, 50 - Amount, null, null, true);
-            }
-            // await PowerCmd.Apply<StrengthPower>(choiceContext, Owner, -GetStrengthBonus(Amount), Owner, null);
-            // await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, -GetDexterityBonus(Amount), Owner, null);
-            await PowerCmd.Apply<GlitterPower>(choiceContext, Owner, 1, Owner, null);
-            return;
-        }
-        if (Amount >= 50) { return; }
+        int effectiveAmount = Math.Min(Amount, 50);
+        bool reachedGlitterThreshold = previousAmount < 50 && effectiveAmount >= 50;
 
-        int strengthGained = GetStrengthBonus(Amount) - GetStrengthBonus(previousAmount);
-        int dexterityGained = GetDexterityBonus(Amount) - GetDexterityBonus(previousAmount);
+        if (Amount > 50)
+        {
+            await PowerCmd.ModifyAmount(choiceContext, this, 50 - Amount, null, null, true);
+        }
+
+        int strengthGained = GetStrengthBonus(effectiveAmount) - GetStrengthBonus(previousAmount);
+        int dexterityGained = GetDexterityBonus(effectiveAmount) - GetDexterityBonus(previousAmount);
 
         if (strengthGained > 0)
         {
@@ -97,6 +90,12 @@ public class StarElfredaPower : ModPowerTemplate
         if (dexterityGained > 0)
         {
             await PowerCmd.Apply<DexterityPower>(choiceContext, Owner, dexterityGained, Owner, null);
+        }
+
+        if (reachedGlitterThreshold)
+        {
+            Flash();
+            await PowerCmd.Apply<GlitterPower>(choiceContext, Owner, 1, Owner, null);
         }
     }
 

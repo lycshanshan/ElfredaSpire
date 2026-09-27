@@ -15,6 +15,29 @@ public class StarlightArmorPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    public override async Task BeforePowerAmountChanged(
+        PowerModel power,
+        decimal amount,
+        Creature target,
+        Creature? applier,
+        CardModel? cardSource)
+    {
+        if (power is not StarElfredaPower || target != Owner || amount >= 0m ||
+            !Owner.HasPower<GlitterPower>())
+        {
+            return;
+        }
+
+        // int previousAmount = power.Amount - (int)amount;
+        // int amountConsumed = Math.Max(0, previousAmount) - Math.Max(0, power.Amount);
+        // if (amountConsumed <= 0)
+        // {
+        //     return;
+        // }
+
+        await Trigger(amount);
+    }
+
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -27,13 +50,11 @@ public class StarlightArmorPower : ModPowerTemplate
             return;
         }
 
-        // int previousAmount = power.Amount - (int)amount;
-        // int amountConsumed = Math.Max(0, previousAmount) - Math.Max(0, power.Amount);
-        // if (amountConsumed <= 0)
-        // {
-        //     return;
-        // }
+        await Trigger(amount);
+    }
 
+    private async Task Trigger(decimal amount)
+    {
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount * (-(int)amount), ValueProp.Unpowered, null);
     }

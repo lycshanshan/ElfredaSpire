@@ -21,6 +21,22 @@ public class MyriadStarsFormPower : ModPowerTemplate
         SyncDynamicVars();
     }
 
+    public override async Task BeforePowerAmountChanged(
+        PowerModel power,
+        decimal amount,
+        Creature target,
+        Creature? applier,
+        CardModel? cardSource)
+    {
+        if (power is not StarElfredaPower || target != Owner || amount == 0m ||
+            !Owner.HasPower<GlitterPower>() || Owner.Player is null)
+        {
+            return;
+        }
+
+        await Trigger(new ThrowingPlayerChoiceContext());
+    }
+
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -39,9 +55,20 @@ public class MyriadStarsFormPower : ModPowerTemplate
             return;
         }
 
+        await Trigger(choiceContext);
+    }
+
+    private async Task Trigger(PlayerChoiceContext choiceContext)
+    {
+        var player = Owner.Player;
+        if (player is null)
+        {
+            return;
+        }
+
         Flash();
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner.Player);
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner.Player);
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, player);
+        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, player);
     }
 
     private void SyncDynamicVars()

@@ -16,6 +16,25 @@ public class FlowerIncarnationPower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    public override async Task BeforePowerAmountChanged(
+        PowerModel power,
+        decimal amount,
+        Creature target,
+        Creature? applier,
+        CardModel? cardSource)
+    {
+        if (_isApplyingTriggeredFlower ||
+            power is not FlowerElfredaPower ||
+            amount <= 0m ||
+            applier != Owner ||
+            !target.HasPower<BloomPower>())
+        {
+            return;
+        }
+
+        await Trigger(new ThrowingPlayerChoiceContext(), cardSource);
+    }
+
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -31,6 +50,11 @@ public class FlowerIncarnationPower : ModPowerTemplate
             return;
         }
 
+        await Trigger(choiceContext, cardSource);
+    }
+
+    private async Task Trigger(PlayerChoiceContext choiceContext, CardModel? cardSource)
+    {
         var enemies = CombatState?.HittableEnemies.ToList();
         if (enemies is null || enemies.Count == 0)
         {
