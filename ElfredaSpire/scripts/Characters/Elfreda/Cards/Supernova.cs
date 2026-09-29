@@ -1,4 +1,4 @@
-// | 超新星 | Supernova | 攻击 | 3 | 造成18/22点伤害。消耗所有[星]，每消耗1层，对所有敌人造成4/5点伤害一次。消耗。 |
+// | 超新星 | Supernova | 攻击 | 3 | 造成18/22点伤害。消耗所有[星]，每消耗1层，对随机敌人造成4/5点伤害一次。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -38,6 +38,7 @@ public class Supernova : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target is null) return;
+        if (CombatState is null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
 
         StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
@@ -52,7 +53,7 @@ public class Supernova : ModCardTemplate
         await DamageCmd.Attack(DynamicVars["StarDamage"].BaseValue)
             .WithHitCount(starAmount)
             .FromCard(this)
-            .TargetingAllOpponents(CombatState!)
+            .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);
     }
 

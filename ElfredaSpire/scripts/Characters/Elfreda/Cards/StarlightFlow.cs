@@ -1,4 +1,4 @@
-// | 星光流转 | StarlightFlow | 攻击 | 1 | 造成10/14点伤害。消耗至多3/4层[星]，并获得消耗层数两倍的[星]。 |
+// | 星光流转 | StarlightFlow | 攻击 | 1 | 造成10/14点伤害。消耗至多6/8层[星]，并获得消耗层数两倍的[星]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -30,7 +30,7 @@ public class StarlightFlow : ModCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<StarElfredaPower>()];
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move), new IntVar("MaxStarConsume", 3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move), new IntVar("MaxStarConsume", 6)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -65,6 +65,6 @@ public class StarlightFlow : ModCardTemplate
     protected override void OnUpgrade()
     {
         DynamicVars.Damage.UpgradeValueBy(4);
-        DynamicVars["MaxStarConsume"].UpgradeValueBy(1);
+        DynamicVars["MaxStarConsume"].UpgradeValueBy(2);
     }
 }

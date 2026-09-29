@@ -1,4 +1,4 @@
-// | 花海之怒 | FlowerSeaFury | 攻击 | 2 | 保留。对所有敌人造成12/16点伤害。移除所有敌人身上的所有[花]，每移除1层，对随机敌人造成3/4点伤害。消耗。 |
+// | 花海之怒 | FlowerSeaFury | 攻击 | 2 | 保留。对所有敌人造成16点伤害。移除所有敌人身上的所有[花]，每移除1层，对所有敌人造成4/6点伤害。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -33,7 +33,7 @@ public class FlowerSeaFury : ModCardTemplate
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<FlowerElfredaPower>()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
-        [new DamageVar(12, ValueProp.Move), new DamageVar("FlowerDamage", 3, ValueProp.Move)];
+        [new DamageVar(16, ValueProp.Move), new DamageVar("FlowerDamage", 4, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -62,14 +62,13 @@ public class FlowerSeaFury : ModCardTemplate
             await DamageCmd.Attack(DynamicVars["FlowerDamage"].BaseValue)
                 .WithHitCount(flowerAmount)
                 .FromCard(this)
-                .TargetingRandomOpponents(CombatState)
+                .TargetingAllOpponents(CombatState)
                 .Execute(choiceContext);
         }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(4);
-        DynamicVars["FlowerDamage"].UpgradeValueBy(1);
+        DynamicVars["FlowerDamage"].UpgradeValueBy(2);
     }
 }

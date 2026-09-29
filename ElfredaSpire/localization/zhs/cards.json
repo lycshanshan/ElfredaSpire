@@ -62,7 +62,7 @@
   "ELFREDA_SPIRE_CARD_WEDGE_DETONATION.title": "标记引爆-楔",
   "ELFREDA_SPIRE_CARD_WEDGE_DETONATION.description": "目标每有{FlowerWedgeRequired:diff()}层[gold]花之楔[/gold]，造成{Damage:diff()}点伤害1次。\n移除目标的一半[gold]花之楔[/gold]。{InCombat:\n（造成{HitCount:diff()}次伤害。）|}",
   "ELFREDA_SPIRE_CARD_SUPERNOVA.title": "超新星",
-  "ELFREDA_SPIRE_CARD_SUPERNOVA.description": "造成{Damage:diff()}点伤害。\n消耗所有[gold]星[/gold]，每消耗1层，对所有敌人造成{StarDamage:diff()}点伤害1次。",
+  "ELFREDA_SPIRE_CARD_SUPERNOVA.description": "造成{Damage:diff()}点伤害。\n消耗所有[gold]星[/gold]，每消耗1层，对随机敌人造成{StarDamage:diff()}点伤害1次。",
   "ELFREDA_SPIRE_CARD_FLOWER_WEDGE.title": "花之楔",
   "ELFREDA_SPIRE_CARD_FLOWER_WEDGE.description": "造成{Damage:diff()}点伤害{HitCount:diff()}次。\n给予{FlowerWedgePower:diff()}层[gold]花之楔[/gold]。",
   "ELFREDA_SPIRE_CARD_STARFORGED_BLADE.title": "星铸刀刃",
