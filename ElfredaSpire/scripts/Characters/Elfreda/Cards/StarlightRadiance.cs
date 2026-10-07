@@ -1,4 +1,4 @@
-// | 星光辐射 | StarlightRadiance | 技能 | 0 | 消耗2层[星]。对全体敌方单位施加3/4层虚弱和易伤。消耗。 |
+// | 星光辐射 | StarlightRadiance | 技能 | 0 | 消耗2层[星]。对全体敌方单位施加3/5层虚弱和易伤。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -46,8 +46,7 @@ public class StarlightRadiance : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (CombatState is null) return;
-        if (!Owner.Creature.HasPower<GlitterPower>())
-            await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
+        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner.Creature, -DynamicVars["StarElfredaPower"].IntValue, Owner.Creature, cardPlay.Card);
         var targets = CombatState.HittableEnemies.ToList();
         await PowerCmd.Apply<VulnerablePower>(choiceContext, targets, DynamicVars["VulnerablePower"].IntValue, Owner.Creature, cardPlay.Card);
         await PowerCmd.Apply<WeakPower>(choiceContext, targets, DynamicVars["WeakPower"].IntValue, Owner.Creature, cardPlay.Card);
@@ -55,7 +54,7 @@ public class StarlightRadiance : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["VulnerablePower"].UpgradeValueBy(1);
-        DynamicVars["WeakPower"].UpgradeValueBy(1);
+        DynamicVars["VulnerablePower"].UpgradeValueBy(2);
+        DynamicVars["WeakPower"].UpgradeValueBy(2);
     }
 }

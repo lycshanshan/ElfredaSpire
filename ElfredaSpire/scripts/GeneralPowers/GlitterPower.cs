@@ -55,7 +55,7 @@ public class GlitterPower : ModPowerTemplate
     {
         if (target == Owner && canonicalPower is StarElfredaPower)// && amount > 0m
         {
-            _pendingStarGained += (int)amount;
+            _pendingStarGained += Math.Max(0, (int)amount);
             modifiedAmount = 0m;
             return true;
         }

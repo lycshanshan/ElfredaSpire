@@ -11,7 +11,7 @@ namespace ElfredaSpire.GeneralPowers;
 [RegisterPower]
 public class FlowerIncarnationPower : ModPowerTemplate
 {
-    private bool _isApplyingTriggeredFlower;
+    private bool _isApplyingTriggeredFlower; // 目前施加者已改为null，理论上可以去除这一保护
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -78,7 +78,7 @@ public class FlowerIncarnationPower : ModPowerTemplate
         _isApplyingTriggeredFlower = true;
         try
         {
-            await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, target, Amount, Owner, cardSource);
+            await PowerCmd.Apply<FlowerElfredaPower>(choiceContext, target, Amount, null, cardSource);
         }
         finally
         {

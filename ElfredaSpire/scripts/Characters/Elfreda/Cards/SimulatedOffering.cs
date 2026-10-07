@@ -1,4 +1,4 @@
-// | 拟造供奉 | SimulatedOffering | 技能 | 2 | 保留。使目标获得1层无实体，自身获得6/8层[星]。消耗。 |
+// | 拟造供奉 | SimulatedOffering | 技能 | 1 | 保留。使目标获得1层无实体，自身获得6/8层[星]。消耗。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -15,7 +15,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class SimulatedOffering : ModCardTemplate
 {
-    public SimulatedOffering() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
+    public SimulatedOffering() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy, true)
     {
     }
 

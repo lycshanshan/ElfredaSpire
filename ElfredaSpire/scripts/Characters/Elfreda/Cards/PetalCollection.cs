@@ -1,4 +1,4 @@
-// | 花瓣收集 | PetalCollection | 攻击 | 2 | 造成10点伤害。本场战斗中每施加过1次[花]，这张牌的伤害+2/3。 |
+// | 花瓣收集 | PetalCollection | 攻击 | 2 | 造成14点伤害。本场战斗中每施加过1次[花]，这张牌的伤害+2/3。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Combat;
@@ -25,7 +25,7 @@ protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactor
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("ExtraDamage", 2),
-        ModCardVars.ComputedDamage("DamageValue", 10, (card) => card!.DynamicVars["DamageValue"].BaseValue + CalculateExtraDamage())
+        ModCardVars.ComputedDamage("DamageValue", 14, (card) => card!.DynamicVars["DamageValue"].BaseValue + CalculateExtraDamage())
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)

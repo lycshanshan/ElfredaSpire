@@ -32,7 +32,7 @@ public class StarlightForge : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["GetCount"].UpgradeValueBy(1);
+        DynamicVars["GetCount"].UpgradeValueBy(2);
     }
 
 

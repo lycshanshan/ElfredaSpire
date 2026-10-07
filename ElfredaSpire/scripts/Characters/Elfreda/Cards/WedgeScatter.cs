@@ -1,4 +1,4 @@
-// | 标记散射 | WedgeScatter | 技能 | 2 | 对所有敌人施加3/4层[花之楔]。 |
+// | 标记散射 | WedgeScatter | 技能 | 1 | 对所有敌人施加3/5层[花之楔]。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -14,7 +14,7 @@ namespace ElfredaSpire.Characters.Elfreda.Cards;
 [RegisterCard(typeof(ElfredaCardPool))]
 public class WedgeScatter : ModCardTemplate
 {
-    public WedgeScatter() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, true)
+    public WedgeScatter() : base(1, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies, true)
     {
     }
 
@@ -39,6 +39,6 @@ public class WedgeScatter : ModCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["FlowerWedgePower"].UpgradeValueBy(1);
+        DynamicVars["FlowerWedgePower"].UpgradeValueBy(2);
     }
 }

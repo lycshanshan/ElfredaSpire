@@ -53,7 +53,7 @@ public class UndyingStarPower : ModPowerTemplate
     private async Task Trigger(PlayerChoiceContext choiceContext, CardModel? cardSource)
     {
         Flash();
-        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, Amount, Owner, cardSource);
+        await PowerCmd.Apply<StarElfredaPower>(choiceContext, Owner, Amount, null, cardSource);
     }
 
     // 自定义图标路径。1:1即可。原版游戏大图256x256，小图64x64。

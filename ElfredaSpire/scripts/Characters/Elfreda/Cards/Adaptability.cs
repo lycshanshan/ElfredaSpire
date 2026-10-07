@@ -1,4 +1,4 @@
-// | 随机应变 | Adaptability | 攻击 | 2/1 | 造成10点伤害。若目标的意图为攻击，获得等同于未被格挡的伤害量的格挡。否则，获得2点能量。 |
+// | 随机应变 | Adaptability | 攻击 | 2/1 | 造成14点伤害。若目标的意图为攻击，获得等同于未被格挡的伤害量的格挡。否则，获得2点能量。 |
 
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -26,7 +26,7 @@ public class Adaptability : ModCardTemplate
         // BannerTexturePath: "" 
     );
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(14, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

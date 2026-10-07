@@ -33,8 +33,7 @@ public class FlowerWedgePower : ModPowerTemplate
         return Amount;
     }
 
-    public override async Task BeforeSideTurnStart(
-        PlayerChoiceContext choiceContext,
+    public override async Task AfterSideTurnStart(
         CombatSide side,
         IReadOnlyList<Creature> participants,
         ICombatState combatState)
@@ -48,6 +47,7 @@ public class FlowerWedgePower : ModPowerTemplate
         int remainingAmount = (amount * 2 + 2) / 3;
 
         Flash();
+        var choiceContext = new ThrowingPlayerChoiceContext();
         await CreatureCmd.Damage(choiceContext, Owner, amount, ValueProp.Unpowered, Owner, null);
         if (Owner.IsAlive)
         {

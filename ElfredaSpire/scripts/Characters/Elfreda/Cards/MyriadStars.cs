@@ -32,6 +32,8 @@ public class MyriadStars : ModCardTemplate
         if (Owner.Creature.HasPower<GlitterPower>())
         {
             amountConsumed = DynamicVars["MaxStarConsume"].IntValue;
+            if (star is not null)
+                await PowerCmd.ModifyAmount(choiceContext, star, -amountConsumed, Owner.Creature, cardPlay.Card);
         }
         else if (star is not null)
         {
