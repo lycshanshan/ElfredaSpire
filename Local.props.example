@@ -1,7 +1,7 @@
 <Project>
   <PropertyGroup>
     <Sts2Dir>请在此填入你的STS2目录</Sts2Dir>
-    <RitsuLibDllPath>$(Sts2Dir)/请在此填入你的 `STS2-RitsuLib.dll` 路径</RitsuLibDllPath>
+    <RitsuLibDir>请在此填入完整 RitsuLib 0.6.15 运行包目录（含 RitsuLib.References.props、compat 和 shared）</RitsuLibDir>
     <GodotEXEPath>请在此处填入`Godot.exe`路径（推荐使用`Godot_v4.5.1-stable_mono_win64`版本）</GodotEXEPath>
   </PropertyGroup>
 </Project>

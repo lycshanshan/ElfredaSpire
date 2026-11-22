@@ -52,7 +52,7 @@ public class MyriadStars : ModCardTemplate
         {
             await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
                 .WithHitCount(amountConsumed)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .Targeting(cardPlay.Target)
                 .Execute(choiceContext);
         }

@@ -40,7 +40,7 @@ public class FlowerSeaFury : ModCardTemplate
         if (CombatState is null) return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .Execute(choiceContext);
 
@@ -61,7 +61,7 @@ public class FlowerSeaFury : ModCardTemplate
         {
             await DamageCmd.Attack(DynamicVars["FlowerDamage"].BaseValue)
                 .WithHitCount(flowerAmount)
-                .FromCard(this)
+                .FromCard(this, cardPlay)
                 .TargetingAllOpponents(CombatState)
                 .Execute(choiceContext);
         }

@@ -29,7 +29,7 @@ public class Harvest : ModCardTemplate
     {
         if (CombatState is null) { return; }
         int hitCount = CombatState.HittableEnemies.Count;
-        await using AttackContext attackContext = await AttackCommand.CreateContextAsync(CombatState, choiceContext, this);
+        await using AttackContext attackContext = await AttackCommand.CreateContextAsync(CombatState, choiceContext, cardPlay);
 
         for (int i = 0; i < hitCount; i++)
         {
@@ -47,8 +47,8 @@ public class Harvest : ModCardTemplate
                     target,
                     damage,
                     DynamicVars.Damage.Props,
-                    Owner.Creature,
-                    this));
+                    this,
+                    cardPlay));
             }
 
             attackContext.AddHit(hitResults);

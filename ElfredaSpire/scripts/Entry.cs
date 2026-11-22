@@ -16,7 +16,7 @@ public class Entry
     // 你的modid
     public const string ModId = "ElfredaSpire";
     public const string ResPath = $"res://{ModId}";
-    private const string BuildMarker = "ElfredaSpire loaded vision 0.0.0";
+    private const string BuildMarker = "ElfredaSpire 0.0.6 loaded (STS2 0.113.1)";
     public static readonly Logger Logger = RitsuLibFramework.CreateLogger(ModId);
     
 

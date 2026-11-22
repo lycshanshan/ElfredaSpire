@@ -36,7 +36,7 @@ public class StarlightImpact : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target is null) return;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
 
         int attacksPlayedThisTurn = CombatManager.Instance.History.CardPlaysFinished.Count(entry =>
             entry.HappenedThisTurn(CombatState) &&

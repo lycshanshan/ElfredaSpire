@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -23,7 +24,8 @@ public class FlowerWedgePower : ModPowerTemplate
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (target != Owner || !props.IsPoweredAttack())
         {
@@ -48,7 +50,7 @@ public class FlowerWedgePower : ModPowerTemplate
 
         Flash();
         var choiceContext = new ThrowingPlayerChoiceContext();
-        await CreatureCmd.Damage(choiceContext, Owner, amount, ValueProp.Unpowered, Owner, null);
+        await CreatureCmd.Damage(choiceContext, Owner, amount, ValueProp.Unpowered, Owner, null, null);
         if (Owner.IsAlive)
         {
             await PowerCmd.ModifyAmount(choiceContext, this, remainingAmount - amount, Owner, null);

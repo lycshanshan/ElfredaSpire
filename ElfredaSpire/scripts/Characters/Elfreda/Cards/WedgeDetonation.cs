@@ -34,7 +34,7 @@ public class WedgeDetonation : ModCardTemplate
         if (cardPlay.Target is null) return;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount((int)DynamicVars.EvaluateValueOrDefault("HitCount", target: cardPlay.Target))
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
         

@@ -31,7 +31,7 @@ public class Adaptability : ModCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target is null) { return; }
-        var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
         if (cardPlay.Target.Monster!.IntendsToAttack)
         {
             var unblockedDamage = attack.Results.SelectMany(results => results).Sum(result => result.UnblockedDamage);

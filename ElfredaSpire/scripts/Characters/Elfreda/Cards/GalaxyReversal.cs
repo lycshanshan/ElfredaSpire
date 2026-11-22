@@ -35,7 +35,7 @@ public class GalaxyReversal : ModCardTemplate
         int hitCount = ResolveEnergyXValue() + DynamicVars["ExtraHits"].IntValue;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(hitCount)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingRandomOpponents(CombatState!)
             .Execute(choiceContext);
 

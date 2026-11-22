@@ -1,8 +1,7 @@
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -15,25 +14,25 @@ public class FlowerCorePower : ModPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterPowerAmountChanged(
-        PlayerChoiceContext choiceContext,
+    public override decimal ModifyPowerAmountGivenAdditive(
         PowerModel power,
+        Creature giver,
         decimal amount,
-        Creature? applier,
+        Creature? target,
         CardModel? cardSource)
     {
-        if (power is not FlowerWedgePower || amount <= 0m || applier != Owner)
+        if (power is not FlowerWedgePower || amount <= 0m || giver != Owner)
         {
-            return;
+            return 0m;
         }
 
+        return Amount;
+    }
+
+    public override Task AfterModifyingPowerAmountGiven(PowerModel power)
+    {
         Flash();
-        await PowerCmd.Apply<FlowerWedgePower>(
-            choiceContext,
-            power.Owner,
-            Amount,
-            Owner,
-            cardSource);
+        return Task.CompletedTask;
     }
 
     public override decimal ModifyDamageAdditive(
@@ -41,7 +40,8 @@ public class FlowerCorePower : ModPowerTemplate
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (target is null
             || !props.IsPoweredAttack()

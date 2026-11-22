@@ -3,6 +3,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Animation;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Entities.Characters;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -140,13 +141,24 @@ public class ElfredaCharacter : ModCharacterTemplate<ElfredaCardPool, ElfredaRel
 
     private const float NonIdleAnimationSpeed = 2f;
 
-    public override CreatureAnimator GenerateAnimator(MegaSprite controller)
+    public override CreatureAnimator GenerateAnimator(MegaSprite controller, Creature creature)
     {
         controller.ConnectAnimationStarted(
             Callable.From<GodotObject, GodotObject, GodotObject>(
                 OnSpineAnimationStarted));
 
-        return base.GenerateAnimator(controller);
+        // 当前骨骼没有新版原生动画器要求的 low_health_loop，低血量时继续使用常态待机。
+        var idle = new AnimState(AnimState.idleAnim, isLooping: true);
+        var animator = new CreatureAnimator(idle, controller);
+        animator.AddAnyState("Idle", idle);
+        animator.AddAnyState("Dead", new AnimState("die"));
+        animator.AddAnyState("Relaxed", new AnimState("relaxed_loop", isLooping: true));
+        foreach (var (state, trigger) in AnimationStates)
+        {
+            state.AddNextState(idle);
+            animator.AddAnyState(trigger, state);
+        }
+        return animator;
     }
 
     private static void OnSpineAnimationStarted(

@@ -39,7 +39,7 @@ public class Supernova : ModCardTemplate
     {
         if (cardPlay.Target is null) return;
         if (CombatState is null) return;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
 
         StarElfredaPower? star = Owner.Creature.GetPower<StarElfredaPower>();
         if (star is null)
@@ -52,7 +52,7 @@ public class Supernova : ModCardTemplate
         await PowerCmd.ModifyAmount(choiceContext, star, -starAmount, Owner.Creature, cardPlay.Card);
         await DamageCmd.Attack(DynamicVars["StarDamage"].BaseValue)
             .WithHitCount(starAmount)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingRandomOpponents(CombatState)
             .Execute(choiceContext);
     }

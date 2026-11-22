@@ -36,7 +36,7 @@ public class BurnTheStarsPower : ModPowerTemplate
         }
 
         Flash();
-        await CreatureCmd.Damage(choiceContext, Owner, 99999, ValueProp.Unpowered, Owner, null);
+        await CreatureCmd.Damage(choiceContext, Owner, 99999, ValueProp.Unpowered, Owner, null, null);
         await PowerCmd.Remove(this);
     }
 

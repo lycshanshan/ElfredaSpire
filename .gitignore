@@ -3,7 +3,11 @@
 /android/
 Local.props
 export_presets.cfg
+
+
 bin/
+artifacts/
+checks/
 windows/
 
 *.gdextension
@@ -11,3 +15,5 @@ windows/
 *.import
 
 *test*
+
+docs/ai/

@@ -112,7 +112,7 @@
   "ELFREDA_SPIRE_CARD_STARLIGHT_ARMOR.title": "星辉护甲",
   "ELFREDA_SPIRE_CARD_STARLIGHT_ARMOR.description": "每消耗1层[gold]星[/gold]，获得{StarlightArmorPower:diff()}点[gold]格挡[/gold]。",
   "ELFREDA_SPIRE_CARD_STARLIGHT_RECYCLE.title": "星光回收",
-  "ELFREDA_SPIRE_CARD_STARLIGHT_RECYCLE.description": "每当你给予[gold]花之楔[/gold]时，获得{StarlightRecyclePower:diff()}层[gold]星[/gold]。",
+  "ELFREDA_SPIRE_CARD_STARLIGHT_RECYCLE.description": "每当你给予[gold]花之楔[/gold]时，获得{StarlightRecyclePower:diff()}层[gold]星[/gold]。\n连续[blue]10[/blue]次回收未造成有效伤害时，中断连锁。每条连锁最多回收[blue]1000[/blue]次。",
   "ELFREDA_SPIRE_CARD_STARLIGHT_BLESSING.title": "星光护佑",
   "ELFREDA_SPIRE_CARD_STARLIGHT_BLESSING.description": "在你的回合开始时，获得{StarlightBlessingPower:diff()}层[gold]星[/gold]。",
   "ELFREDA_SPIRE_CARD_AFTERGLOW.title": "余辉",

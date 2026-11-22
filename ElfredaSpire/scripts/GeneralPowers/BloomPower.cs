@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -36,7 +37,8 @@ public class BloomPower : ModPowerTemplate
         decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (!props.IsPoweredAttack())
         {
@@ -90,7 +92,7 @@ public class BloomPower : ModPowerTemplate
         var choiceContext = new ThrowingPlayerChoiceContext();
         for (int i = 0; i < flowerGained; i++)
         {
-            await CreatureCmd.Damage(choiceContext, Owner, 10, ValueProp.Unpowered, Owner, null);
+            await CreatureCmd.Damage(choiceContext, Owner, 10, ValueProp.Unpowered, Owner, null, null);
             await PowerCmd.Apply<TempStrengthPower>(choiceContext, Owner, -2, Owner, null);
         }
     }

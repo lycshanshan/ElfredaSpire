@@ -88,7 +88,7 @@ public class GlitterPower : ModPowerTemplate
             if (enemies is null || enemies.Count == 0) { return; }
             Creature? target = Owner.Player?.RunState.Rng.CombatTargets.NextItem(enemies);
             if (target is null) { return; }
-            await CreatureCmd.Damage(choiceContext, target, 15, ValueProp.Unpowered, Owner, null);
+            await CreatureCmd.Damage(choiceContext, target, 15, ValueProp.Unpowered, Owner, null, null);
             await PowerCmd.Apply<FlowerWedgePower>(choiceContext, target, 1, Owner, null);
         }
     }

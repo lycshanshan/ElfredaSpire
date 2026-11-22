@@ -27,7 +27,7 @@ public class MeteorShower : ModCardTemplate
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .WithHitCount(DynamicVars["HitCount"].IntValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingRandomOpponents(CombatState!)
             .Execute(choiceContext);
     }

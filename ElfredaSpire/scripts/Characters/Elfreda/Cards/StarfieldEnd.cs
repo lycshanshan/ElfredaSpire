@@ -37,7 +37,7 @@ public class StarfieldEnd : ModCardTemplate, ICardEnergyCostContributor
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Target is null) return;
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this).Targeting(cardPlay.Target).Execute(choiceContext);
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue).FromCard(this, cardPlay).Targeting(cardPlay.Target).Execute(choiceContext);
     }
 
     public int ModifyEnergyCost(CardModel card, int currentCost, CostModifiers modifiers)
